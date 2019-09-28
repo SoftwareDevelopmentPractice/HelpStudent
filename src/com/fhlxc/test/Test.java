@@ -4,7 +4,7 @@ package com.fhlxc.test;
 * @author Xingchao Long
 * @date 2019/33/28 16:33:48
 * @ClassName Test.java
-* @Description 类描述
+* @Description 用来测试git配置是否成功
 */
 
 public class Test {
