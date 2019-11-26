@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 /**
 * @author Xingchao Long
 * @date 2019/40/28 16:40:29
-* @ClassName MainWindow.java
+* @ClassName MainWindow
 * @Description 这是程序的主界面
 */
 
