@@ -17,7 +17,7 @@ import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 //还未完全成为自定义的Jlabel，继承JButton，因为JLable没有内置的LayoutManager，只能固定大小，不随布局改变，所以采用JButton实现JLable
-public class MyJLabel extends JButton {
+public class Label extends JButton {
     //存放背景图片
     private Image image;
     //存放文本内容
@@ -60,7 +60,7 @@ public class MyJLabel extends JButton {
     }
     
     //构造函数初始化textString，否则textString为null而不是空字符串，会报错
-    public MyJLabel() {
+    public Label() {
         this.textString = "";
         //设置无边框
         setBorderPainted(false);
