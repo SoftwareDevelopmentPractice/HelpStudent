@@ -35,9 +35,11 @@ public class ButtonJPanel extends JPanel {
     
     private void setNoticeButton() {
         noticeButton = new Button();
-        noticeButton.setFont(MainWindow.FONT);
+        noticeButton.setFont(MainWindow.BUTTONFONT);
+        noticeButton.setFontColor(MainWindow.BUTTONFONTCOLOR);
         noticeButton.setxText("通知");
-        noticeButton.setBorderColor(null);
+        noticeButton.setBorderColor(MainWindow.BORDERCOLOR);
+        noticeButton.setOpaque(false);
         noticeButton.setColor(MainWindow.BUTTONCOLOR);
         noticeButton.setHoverColor(MainWindow.BUTTONHOVERCOLOR);
         noticeButton.setPressColor(MainWindow.BUTTONPRESSCOLOR);
@@ -52,9 +54,11 @@ public class ButtonJPanel extends JPanel {
     
     private void setMatchButton() {
         matchButton = new Button();
-        matchButton.setFont(MainWindow.FONT);
+        matchButton.setFont(MainWindow.BUTTONFONT);
+        matchButton.setFontColor(MainWindow.BUTTONFONTCOLOR);
         matchButton.setxText("匹配");
-        matchButton.setBorderColor(null);
+        matchButton.setBorderColor(MainWindow.BORDERCOLOR);
+        matchButton.setOpaque(false);
         matchButton.setColor(MainWindow.BUTTONCOLOR);
         matchButton.setHoverColor(MainWindow.BUTTONHOVERCOLOR);
         matchButton.setPressColor(MainWindow.BUTTONPRESSCOLOR);
@@ -69,9 +73,11 @@ public class ButtonJPanel extends JPanel {
     
     private void setManageButton() {
         manageButton = new Button();
-        manageButton.setFont(MainWindow.FONT);
+        manageButton.setFont(MainWindow.BUTTONFONT);
+        manageButton.setFontColor(MainWindow.BUTTONFONTCOLOR);
         manageButton.setxText("管理");
-        manageButton.setBorderColor(null);
+        manageButton.setBorderColor(MainWindow.BORDERCOLOR);
+        manageButton.setOpaque(false);
         manageButton.setColor(MainWindow.BUTTONCOLOR);
         manageButton.setHoverColor(MainWindow.BUTTONHOVERCOLOR);
         manageButton.setPressColor(MainWindow.BUTTONPRESSCOLOR);
@@ -86,9 +92,11 @@ public class ButtonJPanel extends JPanel {
     
     private void setFriendButton() {
         friendButton = new Button();
-        friendButton.setFont(MainWindow.FONT);
-        friendButton.setxText("管理");
-        friendButton.setBorderColor(null);
+        friendButton.setFont(MainWindow.BUTTONFONT);
+        friendButton.setFontColor(MainWindow.BUTTONFONTCOLOR);
+        friendButton.setxText("伙伴");
+        friendButton.setOpaque(false);
+        friendButton.setBorderColor(MainWindow.BORDERCOLOR);
         friendButton.setColor(MainWindow.BUTTONCOLOR);
         friendButton.setHoverColor(MainWindow.BUTTONHOVERCOLOR);
         friendButton.setPressColor(MainWindow.BUTTONPRESSCOLOR);
@@ -103,9 +111,11 @@ public class ButtonJPanel extends JPanel {
     
     private void setInfoButton() {
         infoButton = new Button();
-        infoButton.setFont(MainWindow.FONT);
-        infoButton.setxText("管理");
-        infoButton.setBorderColor(null);
+        infoButton.setFont(MainWindow.BUTTONFONT);
+        infoButton.setFontColor(MainWindow.BUTTONFONTCOLOR);
+        infoButton.setxText("信息");
+        infoButton.setOpaque(false);
+        infoButton.setBorderColor(MainWindow.BORDERCOLOR);
         infoButton.setColor(MainWindow.BUTTONCOLOR);
         infoButton.setHoverColor(MainWindow.BUTTONHOVERCOLOR);
         infoButton.setPressColor(MainWindow.BUTTONPRESSCOLOR);

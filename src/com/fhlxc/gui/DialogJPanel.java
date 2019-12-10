@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -36,13 +37,17 @@ public class DialogJPanel extends JPanel {
         this.myDialog = myDialog;
     }
     
-    public void setContentJPanel(String textString, Image image) {
+    public void setContentJPanel(String textString, Font font, Color fontColor, Image image) {
         contentJPanel.setLayout(new BorderLayout(0, 0));
+        contentJPanel.setOpaque(false);
         contentImageJLabel.setColor(backgroundColor);
         contentImageJLabel.setPreferredSize(new Dimension(myDialog.getWidth() / 3 * 1, 0));
         contentImageJLabel.setImage(image);
         
-        contentTextJLabel.setColor(backgroundColor);
+        contentTextJLabel.setColor(null);
+        contentTextJLabel.setOpaque(false);
+        contentTextJLabel.setFont(font);
+        contentTextJLabel.setFontColor(fontColor);
         contentTextJLabel.setxText(textString);
         
         contentJPanel.add(contentImageJLabel, BorderLayout.WEST);
@@ -52,23 +57,25 @@ public class DialogJPanel extends JPanel {
     }
     
     public void setButtonJPanel() {
-        Color c = new Color(backgroundColor.getRed(), backgroundColor.getGreen(), backgroundColor.getBlue(), 150);
         buttonJPanel.setLayout(new BorderLayout(20, 20));
-        buttonJPanel.setBackground(c);
+        buttonJPanel.setOpaque(false);
         buttonJPanel.add(okButton, BorderLayout.WEST);
         buttonJPanel.add(cancelButton, BorderLayout.CENTER);
         
         this.add(buttonJPanel, BorderLayout.SOUTH);
     }
     
-    public void setOkButton(String text, Color color, Color hoverColor, Color pressColor) {
+    public void setOkButton(String text, Color color, Color hoverColor, Color pressColor, Font font, Color fontColor,Color borderColor, boolean opaque) {
         
         okButton.setPreferredSize(new Dimension(myDialog.getWidth() / 2, myDialog.getHeight() / 5)); 
         okButton.setxText(text);
         okButton.setColor(color);
         okButton.setPressColor(pressColor);
         okButton.setHoverColor(hoverColor);
-        okButton.setBorderColor(null);
+        okButton.setBorderColor(borderColor);
+        okButton.setOpaque(opaque);
+        okButton.setFont(font);
+        okButton.setFontColor(fontColor);
         
         okButton.addActionListener(new ActionListener() {
             @Override
@@ -79,12 +86,15 @@ public class DialogJPanel extends JPanel {
         });
     }
     
-    public void setCancelButton(String text, Color color, Color hoverColor, Color pressColor) {
+    public void setCancelButton(String text, Color color, Color hoverColor, Color pressColor, Font font, Color fontColor, Color borderColor, boolean opaque) {
         cancelButton.setxText(text);
         cancelButton.setColor(color);
         cancelButton.setPressColor(pressColor);
         cancelButton.setHoverColor(hoverColor);
-        cancelButton.setBorderColor(null);
+        cancelButton.setBorderColor(borderColor);
+        cancelButton.setOpaque(opaque);
+        cancelButton.setFont(font);
+        cancelButton.setFontColor(fontColor);
         
         cancelButton.addActionListener(new ActionListener() {
             
