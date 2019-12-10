@@ -12,7 +12,6 @@ import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 /**
 * @author Xingchao Long
@@ -81,6 +80,7 @@ public class MainWindow extends JFrame {
         JPanel panel = new JPanel();
         panel.setOpaque(false);
         contentJPanel.addJPanel(panel, ContentJPanel.INITIAL);
+        
         contentJPanel.showJPanel(ContentJPanel.INITIAL);
         
         contentPane.add(buttonJPanel, BorderLayout.NORTH);
