@@ -1,6 +1,7 @@
 package com.fhlxc.gui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -23,7 +24,7 @@ public class Dialog extends JDialog {
         dialogJPanel = new DialogJPanel();
         setModal(true);
         setVisible(false);
-        setIconImage(new ImageIcon("image/startup.png").getImage());
+        setIconImage(new ImageIcon(MainWindow.STARTUPIMAGE).getImage());
         int width = frame.getWidth() / 2;
         int height = frame.getHeight() / 4;
         setBounds((frame.getWidth() - width) / 2 + frame.getX(), (frame.getHeight() - height) / 2 + frame.getY(), width, height);
@@ -36,10 +37,10 @@ public class Dialog extends JDialog {
     
     public void setDialog(String text, String image) {
         dialogJPanel.setMyDialog(this);
-        dialogJPanel.setBackgroundColor(Color.white);
-        dialogJPanel.setContentJPanel(text, new ImageIcon(image).getImage());
-        dialogJPanel.setOkButton("Ok", Color.white, new Color(255, 152, 0), new Color(204, 122, 0));
-        dialogJPanel.setCancelButton("Cancel", Color.white, new Color(255, 152, 0), new Color(204, 122, 0));
+        dialogJPanel.setBackgroundImage(new ImageIcon(MainWindow.BACKGROUNDIMAGE).getImage());
+        dialogJPanel.setContentJPanel(text, new Font("宋体", Font.BOLD, 32), MainWindow.BUTTONFONTCOLOR, new ImageIcon(image).getImage());
+        dialogJPanel.setOkButton("Ok", MainWindow.BUTTONCOLOR, MainWindow.BUTTONHOVERCOLOR, MainWindow.BUTTONPRESSCOLOR, MainWindow.BUTTONFONT, MainWindow.BUTTONFONTCOLOR, MainWindow.BORDERCOLOR, false);
+        dialogJPanel.setCancelButton("Cancel", MainWindow.BUTTONCOLOR, MainWindow.BUTTONHOVERCOLOR, MainWindow.BUTTONPRESSCOLOR, MainWindow.BUTTONFONT, MainWindow.BUTTONFONTCOLOR, MainWindow.BORDERCOLOR, false);
         dialogJPanel.setButtonJPanel();
         setContentPane(dialogJPanel);
     }
