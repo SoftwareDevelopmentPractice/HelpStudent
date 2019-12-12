@@ -21,6 +21,7 @@ public class ButtonJPanel extends JPanel {
     private Button friendButton;
     private Button infoButton;
     private ContentJPanel contentJPanel;
+    private Button curr = null;
     
     public ButtonJPanel(ContentJPanel contentJPanel) {
         this.contentJPanel = contentJPanel;
@@ -31,6 +32,19 @@ public class ButtonJPanel extends JPanel {
         setManageButton();
         setFriendButton();
         setInfoButton();
+    }
+    
+    private void clicked(Button b) {
+        if (curr == null) {
+            curr = b;
+            curr.setColor(MainWindow.BUTTONSELECTEDCOLOR);
+        }
+        if (curr != b) {
+            curr.setColor(MainWindow.BUTTONCOLOR);
+            curr.repaint();
+            curr = b;
+            curr.setColor(MainWindow.BUTTONSELECTEDCOLOR);
+        }
     }
     
     private void setNoticeButton() {
@@ -47,7 +61,11 @@ public class ButtonJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                contentJPanel.showJPanel(ContentJPanel.NOTICEJPANEL);
+                Button b = (Button) e.getSource();
+                clicked(b);
+                if (curr == null || curr == b) {
+                    contentJPanel.showJPanel(ContentJPanel.NOTICEJPANEL);
+                }
             }
         });
         add(noticeButton);
@@ -67,6 +85,8 @@ public class ButtonJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+                Button b = (Button) e.getSource();
+                clicked(b);
                 contentJPanel.showJPanel(ContentJPanel.MATCHJPANEL);
             }
         });
@@ -87,6 +107,8 @@ public class ButtonJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+                Button b = (Button) e.getSource();
+                clicked(b);
                 contentJPanel.showJPanel(ContentJPanel.MANAGEJPANEL);
             }
         });
@@ -107,6 +129,8 @@ public class ButtonJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+                Button b = (Button) e.getSource();
+                clicked(b);
                 contentJPanel.showJPanel(ContentJPanel.FRIENDJPANEL);
             }
         });
@@ -127,6 +151,8 @@ public class ButtonJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+                Button b = (Button) e.getSource();
+                clicked(b);
                 contentJPanel.showJPanel(ContentJPanel.INFOJPANEL);
             }
         });

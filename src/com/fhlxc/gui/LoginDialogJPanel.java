@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 * @author Xingchao Long
 * @date 2019/29/12 14:29:19
 * @ClassName registerDialogJPanel
-* @Description 登录对话框的内容实现
+* @Description 登录对话框的内容实现 148
 */
 
 @SuppressWarnings("serial")
@@ -46,11 +46,15 @@ public class LoginDialogJPanel extends JPanel {
     private JDialog forgetDialog;
     private ForgetJPanel forgetJPanel;
     
+    private JDialog loginDialog;
+    
     private int state;
     private String account;
     private String pwd;
     
-    public LoginDialogJPanel() {
+    public LoginDialogJPanel(JDialog dialog) {
+        this.loginDialog = dialog;
+        
         setBorder(new EmptyBorder(60, 0, 30, 0));
         setLayout(new BorderLayout(0, 20));
         setUpPanel();
@@ -141,6 +145,9 @@ public class LoginDialogJPanel extends JPanel {
                 char[] values = pwdPasswordField.getPassword();
                 pwd = new String(values);
                 account = accountTextField.getText();
+                //登陆成功之后赋值ok
+                state = OK;
+                loginDialog.setVisible(false);
             }
         });
         
@@ -156,6 +163,9 @@ public class LoginDialogJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+                loginDialog.setVisible(false);
+                registerDialog.setVisible(true);
+                loginDialog.setVisible(true);
             }
         });
         
@@ -171,6 +181,9 @@ public class LoginDialogJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+                loginDialog.setVisible(false);
+                forgetDialog.setVisible(true);
+                loginDialog.setVisible(true);
             }
         });
         
@@ -183,18 +196,28 @@ public class LoginDialogJPanel extends JPanel {
     
     private void setRegisterJPanel() {
         registerDialog = new JDialog();
-        registerJPanel = new RegisterJPanel();
+        registerJPanel = new RegisterJPanel(registerDialog);
         
         registerDialog.setModal(true);
+        registerDialog.setTitle("注册账号");
         registerDialog.setIconImage(new ImageIcon(MainWindow.STARTUPIMAGE).getImage());
         registerDialog.setBounds(MainWindow.x + (MainWindow.initialWidth - MainWindow.initialWidth / 4) / 2, MainWindow.y + (MainWindow.initialHeight - MainWindow.initialHeight / 2) / 2, MainWindow.initialWidth / 4, MainWindow.initialHeight / 2);
         
         registerDialog.setContentPane(registerJPanel);
-        registerDialog.setVisible(true);
+        registerDialog.setVisible(false);
     }
     
     private void setForgetJPanel() {
+        forgetDialog = new JDialog();
+        forgetJPanel = new ForgetJPanel(forgetDialog);
         
+        forgetDialog.setModal(true);
+        forgetDialog.setTitle("忘记密码");
+        forgetDialog.setIconImage(new ImageIcon(MainWindow.STARTUPIMAGE).getImage());
+        forgetDialog.setBounds(MainWindow.x + (MainWindow.initialWidth - MainWindow.initialWidth / 4) / 2, MainWindow.y + (MainWindow.initialHeight - MainWindow.initialHeight / 2) / 2, MainWindow.initialWidth / 4, MainWindow.initialHeight / 2);
+        
+        forgetDialog.setContentPane(forgetJPanel);
+        forgetDialog.setVisible(false);
     }
     
     @Override
