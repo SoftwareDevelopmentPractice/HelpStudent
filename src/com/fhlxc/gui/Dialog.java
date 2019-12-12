@@ -1,6 +1,5 @@
 package com.fhlxc.gui;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -29,6 +28,7 @@ public class Dialog extends JDialog {
         int height = frame.getHeight() / 4;
         setBounds((frame.getWidth() - width) / 2 + frame.getX(), (frame.getHeight() - height) / 2 + frame.getY(), width, height);
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent event) {
                 dialogJPanel.setClose(false);
             }
