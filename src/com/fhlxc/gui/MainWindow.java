@@ -26,15 +26,24 @@ public class MainWindow extends JFrame {
     public static final String STARTUPIMAGE = "image/startup.png";
     public static final String ERRORIMAGE = "image/error.png";
     public static final String WARNINGIMAGE = "image/warning.png";
+    public static final String SUCCESSIMAGE = "image/success.png";
     public static final String BACKGROUNDIMAGE = "image/background.png";
     public static final Color BORDERCOLOR = null;
     public static final Color BUTTONCOLOR = null;
     public static final Color BUTTONHOVERCOLOR = new Color(227, 87, 36, 50);
     public static final Color BUTTONPRESSCOLOR = new Color(204, 122, 0);
     public static final Color BUTTONFONTCOLOR = new Color(255, 152, 0);
+    public static final Color BUTTONSELECTEDCOLOR = new Color(227, 87, 36);
     public static final Font BUTTONFONT = new Font("宋体", Font.PLAIN, 48);
     public static final Font TEXTFONT = new Font("宋体", Font.PLAIN, 20);
-    
+    public static final String SCROLLUPIMAGE = "image/up.png";
+    public static final String SCROLLDOWNIMAGE = "image/down.png";
+    public static final String SCROLLLEFTIMAGE = "image/left.png";
+    public static final String SCROLLRIGHTIMAGE = "image/right.png";
+    public static final Color SCROLLCOLOR = Color.white;
+    public static final Color SCROLLBORDERCOLOR = new Color(255, 152, 0);
+    public static final int SCROLLINCREMENT = 15;
+    public static final int SCROLLSIZE = 15;
     
     private static final int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
     private static final int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -59,8 +68,10 @@ public class MainWindow extends JFrame {
                 dialog.setVisible(false);
                 try {
                     frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                    frame.setVisible(true);
-                    //frame.setLoginDialog();
+                    frame.setVisible(false);
+                    if (frame.setLoginDialog()) {
+                        frame.setVisible(true);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -68,9 +79,9 @@ public class MainWindow extends JFrame {
         });
     }
     
-    private void setLoginDialog() {
+    private boolean setLoginDialog() {
         loginDialog = new JDialog();
-        loginDialogJPanel = new LoginDialogJPanel();
+        loginDialogJPanel = new LoginDialogJPanel(loginDialog);
         
         loginDialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         loginDialog.setModal(true);
@@ -87,6 +98,10 @@ public class MainWindow extends JFrame {
             }
         });
         loginDialog.setVisible(true);
+        if (loginDialogJPanel.getState() == LoginDialogJPanel.OK) {
+            return true;
+        }
+        return false;
     }
 
     public MainWindow() {
