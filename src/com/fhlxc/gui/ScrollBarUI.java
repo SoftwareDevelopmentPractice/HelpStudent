@@ -31,11 +31,11 @@ public class ScrollBarUI extends BasicScrollBarUI {
     public Dimension getPreferredSize(JComponent c) {
         
         if (this.scrollbar.getOrientation() == JScrollBar.VERTICAL) {
-            c.setPreferredSize(new Dimension(10, 0));
+            c.setPreferredSize(new Dimension(MainWindow.SCROLLSIZE, 0));
         }
  
         if (this.scrollbar.getOrientation() == JScrollBar.HORIZONTAL) {
-            c.setPreferredSize(new Dimension(0, 10));
+            c.setPreferredSize(new Dimension(0, MainWindow.SCROLLSIZE));
         }
         return super.getPreferredSize(c);
     }
@@ -80,9 +80,9 @@ public class ScrollBarUI extends BasicScrollBarUI {
     
     public Button createDecreaseButton(int orientation) {
         Button upButton = new Button();
-        upButton.setPressColor(new Color(204, 122, 0));
-        upButton.setHoverColor(new Color(255, 152, 0));
-        upButton.setColor(Color.white);
+        upButton.setPressColor(MainWindow.BUTTONPRESSCOLOR);
+        upButton.setHoverColor(MainWindow.BUTTONHOVERCOLOR);
+        upButton.setColor(MainWindow.BUTTONCOLOR);
         upButton.setImage(image1);
         upButton.setBorderColor(null);
         return upButton;
@@ -90,9 +90,9 @@ public class ScrollBarUI extends BasicScrollBarUI {
     
     public Button createIncreaseButton(int orientation) {
         Button downButton = new Button();
-        downButton.setPressColor(new Color(204, 122, 0));
-        downButton.setHoverColor(new Color(255, 152, 0));
-        downButton.setColor(Color.white);
+        downButton.setPressColor(MainWindow.BUTTONPRESSCOLOR);
+        downButton.setHoverColor(MainWindow.BUTTONHOVERCOLOR);
+        downButton.setColor(MainWindow.BUTTONCOLOR);
         downButton.setImage(image2);
         downButton.setBorderColor(null);
         return downButton;

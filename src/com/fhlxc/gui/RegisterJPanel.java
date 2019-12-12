@@ -20,7 +20,7 @@ import javax.swing.border.EmptyBorder;
 * @author Xingchao Long
 * @date 2019/54/12 15:54:53
 * @ClassName RegisterJPanel
-* @Description 注册对话框的页面
+* @Description 注册对话框的页面 162
 */
 
 @SuppressWarnings("serial")
@@ -30,20 +30,26 @@ public class RegisterJPanel extends JPanel {
     
     private JPanel upPanel;
     private JPanel downPanel;
+    private JDialog registerDialog;
     
     private Label accountLabel;
     private Label pwdLabel;
+    private Label mailLabel;
     private JTextField accountTextField;
+    private JTextField mailTextField;
     private JPasswordField pwdPasswordField;
     
-    private Button loginButton;
+    private Button cancelButton;
     private Button registerButton;
     
     private int state;
+    private String mail;
     private String account;
     private String pwd;
     
-    public RegisterJPanel() {
+    public RegisterJPanel(JDialog dialog) {
+        registerDialog = dialog;
+        
         setBorder(new EmptyBorder(60, 0, 30, 0));
         setLayout(new BorderLayout(0, 20));
         setUpPanel();
@@ -56,16 +62,36 @@ public class RegisterJPanel extends JPanel {
     
     private void setUpPanel() {
         upPanel = new JPanel();
+        mailLabel = new Label();
         accountLabel = new Label();
         pwdLabel = new Label();
+        mailTextField = new JTextField();
         accountTextField = new JTextField();
         pwdPasswordField = new JPasswordField();
         
+        JPanel mailPanel = new JPanel();
         JPanel accountPanel = new JPanel();
         JPanel pwdPanel = new JPanel();
         
-        upPanel.setLayout(new GridLayout(2, 1, 20, 0));
+        upPanel.setLayout(new GridLayout(3, 1, 20, 0));
         upPanel.setOpaque(false);
+        
+        mailLabel.setOpaque(false);
+        mailLabel.setFontColor(MainWindow.BUTTONFONTCOLOR);
+        mailLabel.setFont(MainWindow.TEXTFONT);
+        mailLabel.setxText("邮箱：");
+        mailLabel.setPreferredSize(new Dimension(100, 0));
+        
+        mailTextField.setOpaque(false);
+        mailTextField.setBorder(null);
+        mailTextField.setForeground(MainWindow.BUTTONFONTCOLOR);
+        mailTextField.setCaretColor(MainWindow.BUTTONFONTCOLOR);
+        mailTextField.setFont(MainWindow.TEXTFONT);
+        
+        mailPanel.setLayout(new BorderLayout());
+        mailPanel.setOpaque(false);
+        mailPanel.add(mailLabel, BorderLayout.WEST);
+        mailPanel.add(mailTextField, BorderLayout.CENTER);
         
         accountLabel.setOpaque(false);
         accountLabel.setFontColor(MainWindow.BUTTONFONTCOLOR);
@@ -101,6 +127,7 @@ public class RegisterJPanel extends JPanel {
         pwdPanel.add(pwdLabel, BorderLayout.WEST);
         pwdPanel.add(pwdPasswordField, BorderLayout.CENTER);
         
+        upPanel.add(mailPanel);
         upPanel.add(accountPanel);
         upPanel.add(pwdPanel);
         
@@ -109,33 +136,15 @@ public class RegisterJPanel extends JPanel {
     
     private void setDownPanel() {
         downPanel = new JPanel();
-        loginButton = new Button();
+        cancelButton = new Button();
         registerButton = new Button();
         
         downPanel.setLayout(new GridLayout(1, 2));
         downPanel.setOpaque(false);
         downPanel.setPreferredSize(new Dimension(0, 50));
         
-        loginButton.setOpaque(false);
-        loginButton.setxText("注册");
-        loginButton.setFont(MainWindow.TEXTFONT);
-        loginButton.setFontColor(MainWindow.BUTTONFONTCOLOR);
-        loginButton.setHoverColor(MainWindow.BUTTONHOVERCOLOR);
-        loginButton.setColor(MainWindow.BUTTONCOLOR);
-        loginButton.setPressColor(MainWindow.BUTTONPRESSCOLOR);
-        loginButton.setBorderColor(MainWindow.BORDERCOLOR);
-        loginButton.addActionListener(new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                char[] values = pwdPasswordField.getPassword();
-                pwd = new String(values);
-                account = accountTextField.getText();
-            }
-        });
-        
         registerButton.setOpaque(false);
-        registerButton.setxText("取消");
+        registerButton.setxText("注册");
         registerButton.setFont(MainWindow.TEXTFONT);
         registerButton.setFontColor(MainWindow.BUTTONFONTCOLOR);
         registerButton.setHoverColor(MainWindow.BUTTONHOVERCOLOR);
@@ -146,11 +155,33 @@ public class RegisterJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+                char[] values = pwdPasswordField.getPassword();
+                pwd = new String(values);
+                account = accountTextField.getText();
+                mail = mailTextField.getText();
+                //TODO something 成功之后下面这句代码，并接上提示框
+                registerDialog.setVisible(false);
             }
         });
         
-        downPanel.add(loginButton);
+        cancelButton.setOpaque(false);
+        cancelButton.setxText("取消");
+        cancelButton.setFont(MainWindow.TEXTFONT);
+        cancelButton.setFontColor(MainWindow.BUTTONFONTCOLOR);
+        cancelButton.setHoverColor(MainWindow.BUTTONHOVERCOLOR);
+        cancelButton.setColor(MainWindow.BUTTONCOLOR);
+        cancelButton.setPressColor(MainWindow.BUTTONPRESSCOLOR);
+        cancelButton.setBorderColor(MainWindow.BORDERCOLOR);
+        cancelButton.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                registerDialog.setVisible(false);
+            }
+        });
+        
         downPanel.add(registerButton);
+        downPanel.add(cancelButton);
         
         add(downPanel, BorderLayout.SOUTH);
     }
