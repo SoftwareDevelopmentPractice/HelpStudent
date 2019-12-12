@@ -10,6 +10,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -32,20 +33,23 @@ public class MainWindow extends JFrame {
     public static final Color BUTTONPRESSCOLOR = new Color(204, 122, 0);
     public static final Color BUTTONFONTCOLOR = new Color(255, 152, 0);
     public static final Font BUTTONFONT = new Font("宋体", Font.PLAIN, 48);
+    public static final Font TEXTFONT = new Font("宋体", Font.PLAIN, 20);
     
     
-    private final int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
-    private final int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
-    private final int initialWidth = 1920;
-    private final int initialHeight = 1080;
-    private final int x = (screenWidth - initialWidth) / 2;
-    private final int y = (screenHeight - initialHeight) / 2;
+    private static final int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+    private static final int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+    public static final int initialWidth = 1920;
+    public static final int initialHeight = 1080;
+    public static final int x = (screenWidth - initialWidth) / 2;
+    public static final int y = (screenHeight - initialHeight) / 2;
     
     public static Dialog dialog;
     
     private MyMainJPanel contentPane;
     private ContentJPanel contentJPanel;
     private ButtonJPanel buttonJPanel;
+    private JDialog loginDialog;
+    private LoginDialogJPanel loginDialogJPanel;
     
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -56,11 +60,33 @@ public class MainWindow extends JFrame {
                 try {
                     frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     frame.setVisible(true);
+                    //frame.setLoginDialog();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
+    }
+    
+    private void setLoginDialog() {
+        loginDialog = new JDialog();
+        loginDialogJPanel = new LoginDialogJPanel();
+        
+        loginDialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+        loginDialog.setModal(true);
+        loginDialog.setTitle("登录");
+        loginDialog.setIconImage(new ImageIcon(STARTUPIMAGE).getImage());
+        loginDialog.setBounds(x + (initialWidth - initialWidth / 4) / 2, y + (initialHeight - initialHeight / 2) / 2, initialWidth / 4, initialHeight / 2);
+        
+        loginDialog.setContentPane(loginDialogJPanel);
+        
+        loginDialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+        loginDialog.setVisible(true);
     }
 
     public MainWindow() {
@@ -87,6 +113,7 @@ public class MainWindow extends JFrame {
         contentPane.add(contentJPanel, BorderLayout.CENTER);
         setContentPane(contentPane);
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent event) {
                 MainWindow.dialog.setDialog("确定关闭对话框吗？", MainWindow.WARNINGIMAGE);
                 MainWindow.dialog.setVisible(true);
