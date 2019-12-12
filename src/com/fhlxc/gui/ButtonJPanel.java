@@ -47,6 +47,7 @@ public class ButtonJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+                contentJPanel.showJPanel(ContentJPanel.NOTICEJPANEL);
             }
         });
         add(noticeButton);
@@ -66,6 +67,7 @@ public class ButtonJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+                contentJPanel.showJPanel(ContentJPanel.MATCHJPANEL);
             }
         });
         add(matchButton);
@@ -85,6 +87,7 @@ public class ButtonJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+                contentJPanel.showJPanel(ContentJPanel.MANAGEJPANEL);
             }
         });
         add(manageButton);
@@ -104,6 +107,7 @@ public class ButtonJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+                contentJPanel.showJPanel(ContentJPanel.FRIENDJPANEL);
             }
         });
         add(friendButton);
@@ -123,6 +127,7 @@ public class ButtonJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+                contentJPanel.showJPanel(ContentJPanel.INFOJPANEL);
             }
         });
         add(infoButton);
