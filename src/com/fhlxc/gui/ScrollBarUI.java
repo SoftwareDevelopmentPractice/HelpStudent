@@ -1,6 +1,5 @@
 package com.fhlxc.gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -45,11 +44,11 @@ public class ScrollBarUI extends BasicScrollBarUI {
         GradientPaint gp = null;
         
         if (this.scrollbar.getOrientation() == JScrollBar.VERTICAL) {
-            gp = new GradientPaint(0, 0, Color.white, trackBounds.width, 0, Color.white);
+            gp = new GradientPaint(0, 0, MainWindow.SCROLLCOLOR, trackBounds.width, 0, MainWindow.SCROLLCOLOR);
         }
  
         if (this.scrollbar.getOrientation() == JScrollBar.HORIZONTAL) {
-            gp = new GradientPaint(0, 0, Color.white, trackBounds.height, 0, Color.white);
+            gp = new GradientPaint(0, 0, MainWindow.SCROLLCOLOR, trackBounds.height, 0, MainWindow.SCROLLCOLOR);
         }
         
         g2.setPaint(gp);
@@ -66,15 +65,15 @@ public class ScrollBarUI extends BasicScrollBarUI {
     
     public void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
         g.translate(thumbBounds.x, thumbBounds.y);
-        g.setColor(new Color(255, 152, 0));
-        g.fillRoundRect(0, 0, 10, thumbBounds.height - 1, 5, 5);
+        g.setColor(MainWindow.SCROLLTHUMBCOLOR);
+        g.fillRoundRect(0, 0, MainWindow.SCROLLSIZE, thumbBounds.height - 1, 5, 5);
         
         if (this.scrollbar.getOrientation() == JScrollBar.VERTICAL) {
-            g.fillRoundRect(0, 0, 10, thumbBounds.height - 1, 5, 5);
+            g.fillRoundRect(0, 0, MainWindow.SCROLLSIZE, thumbBounds.height - 1, 5, 5);
         }
  
         if (this.scrollbar.getOrientation() == JScrollBar.HORIZONTAL) {
-            g.fillRoundRect(0, 0, thumbBounds.width - 1, 10, 5, 5);
+            g.fillRoundRect(0, 0, thumbBounds.width - 1, MainWindow.SCROLLSIZE, 5, 5);
         }
     }
     
