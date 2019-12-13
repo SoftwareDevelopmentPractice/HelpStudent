@@ -15,6 +15,7 @@ public class Student {
     private String st_pwd;
     private String st_mail;
     private String st_description;
+    private String st_aim;
     private List<Course> st_Course;
     private List<Notice> st_Notice;
     private List<Plan> st_Plan;
@@ -23,6 +24,12 @@ public class Student {
     private List<Schoolbus> st_Schoolbus;
     public String getSt_id() {
         return st_id;
+    }
+    public String getSt_aim() {
+        return st_aim;
+    }
+    public void setSt_aim(String aim) {
+        this.st_aim = aim;
     }
     public void setSt_id(String st_id) {
         this.st_id = st_id;
