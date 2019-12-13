@@ -31,19 +31,23 @@ public class MainWindow extends JFrame {
     public static final Color BORDERCOLOR = null;
     public static final Color BUTTONCOLOR = null;
     public static final Color BUTTONHOVERCOLOR = new Color(227, 87, 36, 50);
-    public static final Color BUTTONPRESSCOLOR = new Color(204, 122, 0);
+    public static final Color BUTTONPRESSCOLOR = new Color(227, 87, 36, 100);
     public static final Color BUTTONFONTCOLOR = new Color(255, 152, 0);
-    public static final Color BUTTONSELECTEDCOLOR = new Color(227, 87, 36);
+    public static final Color BUTTONSELECTEDCOLOR = new Color(227, 87, 36, 150);
     public static final Font BUTTONFONT = new Font("宋体", Font.PLAIN, 48);
     public static final Font TEXTFONT = new Font("宋体", Font.PLAIN, 20);
     public static final String SCROLLUPIMAGE = "image/up.png";
     public static final String SCROLLDOWNIMAGE = "image/down.png";
     public static final String SCROLLLEFTIMAGE = "image/left.png";
     public static final String SCROLLRIGHTIMAGE = "image/right.png";
-    public static final Color SCROLLCOLOR = Color.white;
+    public static final Color SCROLLCOLOR = new Color(227, 87, 36, 150);
+    public static final Color SCROLLTHUMBCOLOR = new Color(227, 87, 36, 200);
     public static final Color SCROLLBORDERCOLOR = new Color(255, 152, 0);
     public static final int SCROLLINCREMENT = 15;
     public static final int SCROLLSIZE = 15;
+    public static final Font LABELFONT = new Font("宋体", Font.PLAIN, 15);
+    public static final Color LABELFONTCOLOR = new Color(255, 152, 0);
+    public static final Color PANELBORDERCOLOR = new Color(255, 152, 0);
     
     private static final int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
     private static final int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -121,6 +125,8 @@ public class MainWindow extends JFrame {
         JPanel panel = new JPanel();
         panel.setOpaque(false);
         contentJPanel.addJPanel(panel, ContentJPanel.INITIAL);
+        contentJPanel.addJPanel(new ManageJPanel(), ContentJPanel.MANAGEJPANEL);
+        contentJPanel.addJPanel(new PartnerJPanel(), ContentJPanel.FRIENDJPANEL);
         
         contentJPanel.showJPanel(ContentJPanel.INITIAL);
         
