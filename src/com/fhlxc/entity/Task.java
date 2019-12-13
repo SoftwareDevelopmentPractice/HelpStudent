@@ -1,6 +1,6 @@
 package com.fhlxc.entity;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
 * @author Liu Haotian
@@ -10,11 +10,19 @@ import java.util.Date;
 */
 
 public class Task {
+     private String t_id;
      private String t_title;
      private String t_content;
-     private Date t_time;
+     private Calendar t_time;
      private int t_during;
      private boolean st_config;
+    
+    public String getT_id() {
+        return t_id;
+    }
+    public void setT_id(String t_id) {
+        this.t_id = t_id;
+    }
     public String getT_title() {
         return t_title;
     }
@@ -27,10 +35,10 @@ public class Task {
     public void setT_content(String t_content) {
         this.t_content = t_content;
     }
-    public Date getT_time() {
+    public Calendar getT_time() {
         return t_time;
     }
-    public void setT_time(Date t_time) {
+    public void setT_time(Calendar t_time) {
         this.t_time = t_time;
     }
     public int getT_during() {
