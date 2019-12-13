@@ -177,7 +177,7 @@ public class ForgetJPanel extends JPanel {
                 pwd = new String(values);
                 account = accountTextField.getText();
                 vcode = vcodeTextField.getText();
-                //TODO something 显示修改结果对话框，成功修改后下面这句代码
+                //TODO something 显示修改成功对话框（Mainwindow里的对话框），成功修改后下面这句代码
                 forgetDialog.setVisible(false);
             }
         });
