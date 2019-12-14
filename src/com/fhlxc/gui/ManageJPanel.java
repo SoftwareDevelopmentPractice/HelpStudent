@@ -2,9 +2,12 @@ package com.fhlxc.gui;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 /**
@@ -30,6 +33,12 @@ public class ManageJPanel extends JPanel {
         setRemindButton();
     }
     
+    private void setDialog(JDialog dialog) {
+        dialog.setModal(true);
+        dialog.setIconImage(new ImageIcon(MainWindow.STARTUPIMAGE).getImage());
+        dialog.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+    }
+    
     private void setCourseButton() {
         courseButton = new Button();
         courseButton.setOpaque(false);
@@ -45,6 +54,11 @@ public class ManageJPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO something 弹出相关的窗口
+                JDialog dialog = new JDialog();
+                setDialog(dialog);
+                CourseManageJPanel courseManageJPanel = new CourseManageJPanel(dialog);
+                dialog.setContentPane(courseManageJPanel);
+                dialog.setVisible(true);
             }
         });
         add(courseButton);

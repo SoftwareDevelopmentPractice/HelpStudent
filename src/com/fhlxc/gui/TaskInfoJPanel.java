@@ -80,7 +80,7 @@ public class TaskInfoJPanel extends JPanel {
     private void setT_time() {
         t_time = new Label();
         
-        t_time.setxText("时间：" + task.getT_time());
+        t_time.setxText("时间：" + task.getT_time().getTime());
         t_time.setPreferredSize(new Dimension(width, 25));
         
         setLable(t_time);

@@ -46,8 +46,8 @@ public class MainWindow extends JFrame {
     public static final int SCROLLINCREMENT = 15;
     public static final int SCROLLSIZE = 15;
     public static final Font LABELFONT = new Font("宋体", Font.PLAIN, 15);
-    public static final Color LABELFONTCOLOR = new Color(14, 159, 67);
-    public static final Color PANELBORDERCOLOR = new Color(14, 159, 67);
+    public static final Color LABELFONTCOLOR = new Color(166, 18, 18);
+    public static final Color PANELBORDERCOLOR = new Color(166, 18, 18);
     public static final Color PANELSELECTEDCOLOR = Color.white;
     
     private static final int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
