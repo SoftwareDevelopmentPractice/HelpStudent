@@ -128,6 +128,7 @@ public class MainWindow extends JFrame {
         contentJPanel.addJPanel(panel, ContentJPanel.INITIAL);
         contentJPanel.addJPanel(new ManageJPanel(), ContentJPanel.MANAGEJPANEL);
         contentJPanel.addJPanel(new PartnerJPanel(this), ContentJPanel.FRIENDJPANEL);
+        contentJPanel.addJPanel(new NoticeJpanel(), ContentJPanel.NOTICEJPANEL);
         
         contentJPanel.showJPanel(ContentJPanel.INITIAL);
         

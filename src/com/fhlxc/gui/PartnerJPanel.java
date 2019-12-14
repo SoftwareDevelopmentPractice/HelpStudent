@@ -51,7 +51,6 @@ public class PartnerJPanel extends JPanel {
         friendJPanel = new JPanel();
         friendJPanel.setOpaque(false);
         friendJPanel.setLayout(new VFlowLayout(VFlowLayout.TOP, 0, 0, false, false));
-        
         /*
          for (int i = 1; i < 20; i++) {
              Student student = new Student();
@@ -61,9 +60,9 @@ public class PartnerJPanel extends JPanel {
                         "演艺事业外，文章也参与公益慈善事业，2010年成立大福自闭症关爱基金。\n" + 
                 "2017年9月16日，凭借《陆垚知马俐》获得第31届中国电影金鸡奖导演处女作奖 [14]  。\n" + 
                 "2019年7月28日，文章通过微博宣布，与妻子马伊琍离婚 [15] " );
+
             addPartnerInfo(student);
          }*/
-         
         
         scrollPane1 = new JScrollPane();
         scrollPane1.setViewportView(friendJPanel);
