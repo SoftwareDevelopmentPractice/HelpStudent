@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -84,7 +85,7 @@ public class PartnerJPanel extends JPanel {
             currPartnerInfoJPanel = p;
             frame.setCursor(new Cursor(Cursor.WAIT_CURSOR));
             //TODO something 点击后,添加右侧的任务信息,调用addTaskInfo()函数
-            /*taskJPanel.removeAll();
+            taskJPanel.removeAll();
             Task task = new Task();
             task.setT_id("3293488");
             task.setT_title("wodenide");
@@ -95,7 +96,7 @@ public class PartnerJPanel extends JPanel {
                     "演艺事业外，文章也参与公益慈善事业，2010年成立大福自闭症关爱基金。\n" + 
                     "2017年9月16日，凭借《陆垚知马俐》获得第31届中国电影金鸡奖导演处女作奖 [14]  。\n" + 
                     "2019年7月28日，文章通过微博宣布，与妻子马伊琍离婚 [15] " );
-            addTaskInfo(task);*/
+            addTaskInfo(task);
             taskJPanel.updateUI();
             frame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             return;
