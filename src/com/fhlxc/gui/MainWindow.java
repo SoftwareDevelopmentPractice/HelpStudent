@@ -14,6 +14,8 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.fhlxc.data.Data;
+
 /**
 * @author Xingchao Long
 * @date 2019/40/28 16:40:29
@@ -131,7 +133,9 @@ public class MainWindow extends JFrame {
         contentJPanel.addJPanel(new PartnerJPanel(this), ContentJPanel.FRIENDJPANEL);
         contentJPanel.addJPanel(new MatchJPanel(), ContentJPanel.MATCHJPANEL);
         contentJPanel.addJPanel(new NoticeJpanel(), ContentJPanel.NOTICEJPANEL);
-        contentJPanel.addJPanel(new InfoJPanel(), ContentJPanel.INFOJPANEL);
+        if (Data.student != null) {
+            contentJPanel.addJPanel(new InfoJPanel(Data.student), ContentJPanel.INFOJPANEL);
+        }
         
         contentJPanel.showJPanel(ContentJPanel.INITIAL);
         

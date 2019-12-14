@@ -31,6 +31,7 @@ public class TaskInfoJPanel extends JPanel {
     
     private Button modifyTask;
     private Button deleteTask;
+    private Button config;
     
     private JTextArea textArea;
     private JScrollPane scrollPane;
@@ -151,10 +152,11 @@ public class TaskInfoJPanel extends JPanel {
         JPanel buttonJPanel = new JPanel();
         modifyTask = new Button();
         deleteTask = new Button();
+        config = new Button();
         
         buttonJPanel.setOpaque(false);
         buttonJPanel.setBorder(new EmptyBorder(0, 50, 0, 50));
-        buttonJPanel.setLayout(new GridLayout(1, 2, 50, 50));
+        buttonJPanel.setLayout(new GridLayout(1, 3, 50, 50));
         buttonJPanel.setPreferredSize(new Dimension(width, 25));
         
         modifyTask.setxText("修改任务");
@@ -164,6 +166,14 @@ public class TaskInfoJPanel extends JPanel {
         deleteTask.setxText("删除任务");
         setButton(deleteTask);
         buttonJPanel.add(deleteTask);
+        
+        if (task.getSt_config()) {
+            config.setxText("取消提醒");
+        } else {
+            config.setxText("设置提醒");
+        }
+        setButton(config);
+        buttonJPanel.add(config);
         
         add(buttonJPanel);
     }
@@ -202,5 +212,9 @@ public class TaskInfoJPanel extends JPanel {
 
     public JTextArea getTextArea() {
         return textArea;
+    }
+    
+    public Button getConfig() {
+        return config;
     }
 }

@@ -3,10 +3,7 @@ package com.fhlxc.gui;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
@@ -29,31 +26,24 @@ public class PlanInfoJPanel extends JPanel {
     private Label pl_during;
     private Label pl_content;
     
+    private Button addPlan;
     private Button modifyPlan;
     private Button deletePlan;
     private Button config;
     
-    private JTextArea textArea;
-    private JScrollPane scrollPane;
-    
-    private int width, height;
-    
     public PlanInfoJPanel(Plan plan, int width, int height, boolean modify) {
         this.plan = plan;
-        this.width = width;
-        this.height = height;
         
         setOpaque(false);
         
         setPreferredSize(new Dimension(width, height));
         setBorder(new LineBorder(MainWindow.PANELBORDERCOLOR));
-        setLayout(new VFlowLayout(VFlowLayout.CENTER, 0, 0, false, false));
+        setLayout(new GridLayout(5, 1));
         
-        setT_id();
-        setT_title();
-        setT_time();
-        setT_during();
-        setT_content();
+        setPl_type();
+        setPl_title();
+        setPl_time();
+        setPl_during();
         
         if (modify) {
             setButtonJPanel();
@@ -67,75 +57,40 @@ public class PlanInfoJPanel extends JPanel {
         label.setOpaque(false);
     }
     
-    private void setT_id() {
+    private void setPl_type() {
         pl_type = new Label();
         
         pl_type.setxText("计划类型：" + plan.getPl_type());
-        pl_type.setPreferredSize(new Dimension(width, 25));
         
         setLable(pl_type);
         add(pl_type);
     }
     
-    private void setT_title() {
+    private void setPl_title() {
         pl_title = new Label();
         
         pl_title.setxText("标题：" + plan.getPl_title());
-        pl_title.setPreferredSize(new Dimension(width, 25));
         
         setLable(pl_title);
         add(pl_title);
     }
     
-    private void setT_time() {
+    private void setPl_time() {
         pl_time = new Label();
         
         pl_time.setxText("时间：" + plan.getPl_time().getTime());
-        pl_time.setPreferredSize(new Dimension(width, 25));
         
         setLable(pl_time);
         add(pl_time);
     }
     
-    private void setT_during() {
+    private void setPl_during() {
         pl_during = new Label();
         
         pl_during.setxText("持续时间：" + plan.getPl_during() + "小时");
-        pl_during.setPreferredSize(new Dimension(width, 25));
         
         setLable(pl_during);
         add(pl_during);
-    }
-    
-    private void setT_content() {
-        scrollPane = new JScrollPane();
-        pl_content = new Label();
-        textArea = new JTextArea();
-        
-        pl_content.setxText("内容：");
-        pl_content.setPreferredSize(new Dimension(width, 25));
-        
-        setLable(pl_content);
-        add(pl_content);
-        
-        textArea.setEditable(false);
-        textArea.setLineWrap(true);
-        textArea.setOpaque(false);
-        textArea.setFont(MainWindow.LABELFONT);
-        textArea.setForeground(MainWindow.LABELFONTCOLOR);
-        textArea.setBorder(null);
-        textArea.setText(plan.getPl_content());
-        
-        scrollPane.setViewportView(textArea);
-        scrollPane.setOpaque(false);
-        scrollPane.setBorder(null);
-        scrollPane.getVerticalScrollBar().setUI(new ScrollBarUI(new ImageIcon(MainWindow.SCROLLUPIMAGE).getImage(), new ImageIcon(MainWindow.SCROLLDOWNIMAGE).getImage()));
-        scrollPane.getVerticalScrollBar().setUnitIncrement(MainWindow.SCROLLINCREMENT);
-        scrollPane.getHorizontalScrollBar().setUI(new ScrollBarUI(new ImageIcon(MainWindow.SCROLLLEFTIMAGE).getImage(), new ImageIcon(MainWindow.SCROLLRIGHTIMAGE).getImage()));
-        scrollPane.getHorizontalScrollBar().setUnitIncrement(MainWindow.SCROLLINCREMENT);
-        scrollPane.getViewport().setOpaque(false);
-        scrollPane.setPreferredSize(new Dimension(width, height - 160));
-        add(scrollPane);
     }
     
     private void setButton(Button button) {
@@ -153,11 +108,15 @@ public class PlanInfoJPanel extends JPanel {
         modifyPlan = new Button();
         deletePlan = new Button();
         config = new Button();
+        addPlan = new Button();
         
         buttonJPanel.setOpaque(false);
-        buttonJPanel.setBorder(new EmptyBorder(0, 50, 0, 50));
-        buttonJPanel.setLayout(new GridLayout(1, 3, 50, 50));
-        buttonJPanel.setPreferredSize(new Dimension(width, 25));
+        buttonJPanel.setBorder(new EmptyBorder(0, 20, 0, 50));
+        buttonJPanel.setLayout(new GridLayout(1, 4, 20, 0));
+        
+        addPlan.setxText("添加计划");
+        setButton(addPlan);
+        buttonJPanel.add(addPlan);
         
         modifyPlan.setxText("修改计划");
         setButton(modifyPlan);
@@ -178,11 +137,15 @@ public class PlanInfoJPanel extends JPanel {
         add(buttonJPanel);
     }
 
-    public Button getModifyTask() {
+    public Button getConfig() {
+        return config;
+    }
+    
+    public Button getModifyPlan() {
         return modifyPlan;
     }
 
-    public Button getDeleteTask() {
+    public Button getDeletePlan() {
         return deletePlan;
     }
 
@@ -210,7 +173,7 @@ public class PlanInfoJPanel extends JPanel {
         return pl_content;
     }
 
-    public JTextArea getTextArea() {
-        return textArea;
+    public Button getAddPlan() {
+        return addPlan;
     }
 }
