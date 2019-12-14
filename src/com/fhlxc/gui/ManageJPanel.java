@@ -56,6 +56,7 @@ public class ManageJPanel extends JPanel {
                 //TODO something 弹出相关的窗口
                 JDialog dialog = new JDialog();
                 setDialog(dialog);
+                dialog.setTitle("课程管理");
                 CourseManageJPanel courseManageJPanel = new CourseManageJPanel(dialog);
                 dialog.setContentPane(courseManageJPanel);
                 dialog.setVisible(true);
@@ -79,6 +80,12 @@ public class ManageJPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO something 弹出相关的窗口
+                JDialog dialog = new JDialog();
+                setDialog(dialog);
+                dialog.setTitle("任务管理");
+                TaskManageJPanel taskManageJPanel = new TaskManageJPanel(dialog);
+                dialog.setContentPane(taskManageJPanel);
+                dialog.setVisible(true);
             }
         });
         add(taskButton);
@@ -99,6 +106,12 @@ public class ManageJPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO something 弹出相关的窗口
+                JDialog dialog = new JDialog();
+                setDialog(dialog);
+                dialog.setTitle("计划管理");
+                PlanManageJPanel planManageJPanel = new PlanManageJPanel(dialog);
+                dialog.setContentPane(planManageJPanel);
+                dialog.setVisible(true);
             }
         });
         add(planButton);
@@ -107,7 +120,7 @@ public class ManageJPanel extends JPanel {
     private void setRemindButton() {
         remindButton = new Button();
         remindButton.setOpaque(false);
-        remindButton.setxText("计划管理");
+        remindButton.setxText("校车提醒");
         remindButton.setFont(MainWindow.BUTTONFONT);
         remindButton.setFontColor(Color.black);
         remindButton.setHoverColor(new Color(255, 251, 180, 150));
@@ -119,6 +132,12 @@ public class ManageJPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO something 弹出相关的窗口
+                JDialog dialog = new JDialog();
+                setDialog(dialog);
+                dialog.setTitle("校车提醒");
+                SchoolbusManageJPanel schoolbusManageJPanel = new SchoolbusManageJPanel(dialog);
+                dialog.setContentPane(schoolbusManageJPanel);
+                dialog.setVisible(true);
             }
         });
         add(remindButton);

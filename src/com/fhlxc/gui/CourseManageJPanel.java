@@ -19,7 +19,7 @@ import com.fhlxc.entity.Course;
 * @author Xingchao Long
 * @date 2019/52/14 09:52:37
 * @ClassName CourseManageJPanel
-* @Description 课表管理页的界面 73 87
+* @Description 课表管理页的界面 73 87 104
 */
 
 @SuppressWarnings("serial")

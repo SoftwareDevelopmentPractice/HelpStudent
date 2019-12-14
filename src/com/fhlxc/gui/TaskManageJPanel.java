@@ -3,13 +3,14 @@ package com.fhlxc.gui;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -20,13 +21,13 @@ import com.fhlxc.entity.Task;
 
 /**
 * @author Xingchao Long
-* @date 2019/10/12 21:10:16
-* @ClassName FriendJPanel
-* @Description 伙伴页的界面 84 109
+* @date 2019/00/14 20:00:29
+* @ClassName TaskManageJPanel
+* @Description 任务管理的页面 87 112 188 199 230 237 245
 */
 
 @SuppressWarnings("serial")
-public class PartnerJPanel extends JPanel {
+public class TaskManageJPanel extends JPanel {
     private JPanel friendJPanel;
     private JPanel taskJPanel;
     
@@ -35,13 +36,13 @@ public class PartnerJPanel extends JPanel {
     
     private PartnerInfoJPanel currPartnerInfoJPanel;
     
-    private JFrame frame;
+    private JDialog dialog;
     
-    public PartnerJPanel(JFrame frame) {
-        this.frame = frame;
+    public TaskManageJPanel(JDialog dialog) {
+        this.dialog = dialog;
         
         setOpaque(false);
-        setBorder(new EmptyBorder(50, 50, 50, 50));
+        setBorder(new EmptyBorder(150, 50, 150, 50));
         setLayout(new BorderLayout(150, 0));
         setFriendJPanel();
         setTaskJPanel();
@@ -52,7 +53,7 @@ public class PartnerJPanel extends JPanel {
         friendJPanel.setOpaque(false);
         friendJPanel.setLayout(new VFlowLayout(VFlowLayout.TOP, 0, 0, false, false));
         
-         /*for (int i = 1; i < 20; i++) {
+        /* for (int i = 1; i < 20; i++) {
              Student student = new Student();
             student.setSt_id("2017141463145");
             student.setSt_description("2004年参演电视剧《与青春有关的日子》，开始在影视圈崭露头角 [1]  。2005年拍摄古装剧《锦衣卫》。2007年主演赵宝刚导演的青春剧《奋斗》； [2]  同年，主演首部电影《走着瞧》。2008年主演滕华涛执导的电视剧《蜗居》，饰演80后城市青年小贝。 [1]  [3]  2009年，在电影《海洋天堂》中扮演自闭症患者王大福；同年参演抗战题材的电视剧《雪豹》 [4]  。2011年，主演的电视剧《裸婚时代》在各大卫视播出； [5]  2011年-2012年连续2年获得北京大学生电影节 [6-7]  最受大学生欢迎男演员奖。2012年，凭借电影《失恋33天》获得第31届大众电影百花奖最佳男主角奖； [8]  同年成立自己经营的北京君竹影视文化有限公司，并导演第一部影视作品《小爸爸》。2013年2月，主演的电影《西游·降魔篇》在全国上映。 [9] \n" + 
@@ -82,7 +83,7 @@ public class PartnerJPanel extends JPanel {
             p.setOpaque(true);
             p.setBackground(MainWindow.PANELSELECTEDCOLOR);
             currPartnerInfoJPanel = p;
-            frame.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+            dialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
             //TODO something 点击后,添加右侧的任务信息,调用addTaskInfo()函数
             /*taskJPanel.removeAll();
             Task task = new Task();
@@ -97,7 +98,7 @@ public class PartnerJPanel extends JPanel {
                     "2019年7月28日，文章通过微博宣布，与妻子马伊琍离婚 [15] 2019年7月28日，文章通过微博宣布，与妻子马伊琍离婚 [152019年7月28日，文章通过微博宣布，与妻子马伊琍离婚 [152019年7月28日，文章通过微博宣布，与妻子马伊琍离婚 [152019年7月28日，文章通过微博宣布，与妻子马伊琍离婚 [152019年7月28日，文章通过微博宣布，与妻子马伊琍离婚 [152019年7月28日，文章通过微博宣布，与妻子马伊琍离婚 [15" );
             addTaskInfo(task);*/
             taskJPanel.updateUI();
-            frame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             return;
         }
         if (p != currPartnerInfoJPanel) {
@@ -107,16 +108,16 @@ public class PartnerJPanel extends JPanel {
             p.setBackground(MainWindow.PANELSELECTEDCOLOR);
             currPartnerInfoJPanel = p;
             currPartnerInfoJPanel.repaint();
-            frame.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+            dialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
             //TODO something 点击后,添加右侧的任务信息，调用addTaskInfo()函数
             taskJPanel.updateUI();
-            frame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             return;
         }
     }
     
     public void addPartnerInfo(Student partner) {
-        PartnerInfoJPanel partnerInfoJPanel = new PartnerInfoJPanel(partner, MainWindow.initialWidth / 3 - 20, MainWindow.initialHeight / 4, false);
+        PartnerInfoJPanel partnerInfoJPanel = new PartnerInfoJPanel(partner, MainWindow.initialWidth / 3 - 20, MainWindow.initialHeight / 4, true);
         
         partnerInfoJPanel.getSt_id().addActionListener(new ActionListener() {
             
@@ -177,6 +178,28 @@ public class PartnerJPanel extends JPanel {
             }
         });
         
+        partnerInfoJPanel.getAddTask().addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Button button = (Button) e.getSource();
+                PartnerInfoJPanel p = (PartnerInfoJPanel) button.getParent().getParent();
+                clicked(p);
+                //显示添加任务的对话框
+            }
+        });
+        
+        partnerInfoJPanel.getDeletePartner().addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Button button = (Button) e.getSource();
+                PartnerInfoJPanel p = (PartnerInfoJPanel) button.getParent().getParent();
+                clicked(p);
+                //删除这个面板
+            }
+        });
+        
         friendJPanel.add(partnerInfoJPanel);
     }
     
@@ -199,7 +222,34 @@ public class PartnerJPanel extends JPanel {
     }
     
     public void addTaskInfo(Task task) {
-        TaskInfoJPanel taskInfoJPanel = new TaskInfoJPanel(task, MainWindow.initialWidth - MainWindow.initialWidth / 3 - 280, MainWindow.initialHeight / 3, false);
+        TaskInfoJPanel taskInfoJPanel = new TaskInfoJPanel(task, MainWindow.initialWidth - MainWindow.initialWidth / 3 - 280, MainWindow.initialHeight / 3, true);
+        taskInfoJPanel.getModifyTask().addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //弹出修改对话框对话框
+            }
+        });
+        taskInfoJPanel.getDeleteTask().addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //删除此任务
+            }
+        });
+        taskInfoJPanel.getConfig().addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //提醒设置
+            }
+        });
         taskJPanel.add(taskInfoJPanel);
+    }
+    
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(new ImageIcon(MainWindow.BACKGROUNDIMAGE).getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
     }
 }
