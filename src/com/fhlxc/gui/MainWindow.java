@@ -29,9 +29,9 @@ public class MainWindow extends JFrame {
     public static final String SUCCESSIMAGE = "image/success.png";
     public static final String BACKGROUNDIMAGE = "image/background.png";
     public static final Color BORDERCOLOR = null;
-    public static final Color BUTTONCOLOR = null;
-    public static final Color BUTTONHOVERCOLOR = new Color(227, 87, 36, 50);
-    public static final Color BUTTONPRESSCOLOR = new Color(227, 87, 36, 100);
+    public static final Color BUTTONCOLOR = new Color(227, 87, 36, 100);
+    public static final Color BUTTONHOVERCOLOR = new Color(227, 87, 36, 150);
+    public static final Color BUTTONPRESSCOLOR = new Color(227, 87, 36, 200);
     public static final Color BUTTONFONTCOLOR = new Color(255, 152, 0);
     public static final Color BUTTONSELECTEDCOLOR = new Color(227, 87, 36, 150);
     public static final Font BUTTONFONT = new Font("宋体", Font.PLAIN, 48);
@@ -45,10 +45,10 @@ public class MainWindow extends JFrame {
     public static final Color SCROLLBORDERCOLOR = new Color(255, 152, 0);
     public static final int SCROLLINCREMENT = 15;
     public static final int SCROLLSIZE = 15;
-    public static final Font LABELFONT = new Font("宋体", Font.PLAIN, 15);
-    public static final Color LABELFONTCOLOR = new Color(166, 18, 18);
-    public static final Color PANELBORDERCOLOR = new Color(166, 18, 18);
-    public static final Color PANELSELECTEDCOLOR = Color.white;
+    public static final Font LABELFONT = new Font("宋体", Font.PLAIN, 20);
+    public static final Color LABELFONTCOLOR = Color.white;
+    public static final Color PANELBORDERCOLOR = new Color(227, 87, 36);
+    public static final Color PANELSELECTEDCOLOR = new Color(166, 18, 84);
     
     private static final int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
     private static final int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -113,6 +113,7 @@ public class MainWindow extends JFrame {
         setIconImage(new ImageIcon(STARTUPIMAGE).getImage());
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setBounds(x, y, initialWidth, initialHeight);
+        setTitle("提醒软件");
         
         contentPane = new MyMainJPanel();
         contentJPanel = new ContentJPanel();
@@ -130,6 +131,7 @@ public class MainWindow extends JFrame {
         contentJPanel.addJPanel(new PartnerJPanel(this), ContentJPanel.FRIENDJPANEL);
         contentJPanel.addJPanel(new MatchJPanel(), ContentJPanel.MATCHJPANEL);
         contentJPanel.addJPanel(new NoticeJpanel(), ContentJPanel.NOTICEJPANEL);
+        contentJPanel.addJPanel(new InfoJPanel(), ContentJPanel.INFOJPANEL);
         
         contentJPanel.showJPanel(ContentJPanel.INITIAL);
         

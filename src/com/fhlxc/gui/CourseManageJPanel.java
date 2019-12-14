@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -113,7 +114,7 @@ public class CourseManageJPanel extends JPanel {
         courseJPanel.setOpaque(false);
         courseJPanel.setLayout(new VFlowLayout(VFlowLayout.TOP, 0, 0, false, false));
         
-        /*for (int i = 1; i < 20; i++) {
+        for (int i = 1; i < 20; i++) {
             Course course = new Course();
             course.setC_id("20183687783");
             course.setC_name("wohaode ");
@@ -121,7 +122,7 @@ public class CourseManageJPanel extends JPanel {
             course.setC_place("江安德惠");
             
             addCourseInfoJPanel(course);
-        }*/
+        }
         
         scrollPane1 = new JScrollPane();
         scrollPane1.setViewportView(courseJPanel);
