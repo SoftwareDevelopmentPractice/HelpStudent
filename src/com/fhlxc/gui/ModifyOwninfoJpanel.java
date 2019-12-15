@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -14,24 +15,22 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 /**
-* @author Xingchao Long
-* @date 2019/56/15 11:56:33
-* @ClassName ModifyPlanJPanel
-* @Description 修改计划的面板，包括添加
+* @author Guangyao Gou
+* @date 2019/10/15 17:10:37
+* @ClassName ModifyOwninfoJpanel.java
+* @Description 修改个人信息的界面
 */
 
 @SuppressWarnings("serial")
-public class ModifyPlanJPanel extends JPanel {
-    private Label title;
-    private Label type;
-    private Label time;
-    private Label during;
-    private Label content;
+public class ModifyOwninfoJpanel extends JPanel{
+    private Label pwd;
+    private Label mail;
+    private Label aim;
+    private Label description;
     
-    private JTextField titleField;
-    private JTextField typeField;
-    private JTextField timeField;
-    private JTextField duringField;
+    private JPasswordField pwdField;
+    private JTextField mailField;
+    private JTextField aimField;
     private JTextArea textArea;
     private int width = MainWindow.initialWidth / 2 + 240;
     
@@ -40,7 +39,7 @@ public class ModifyPlanJPanel extends JPanel {
     private Button ok;
     private Button cancel;
     
-    public ModifyPlanJPanel() {
+    public ModifyOwninfoJpanel() {
         setOpaque(false);
         setBorder(new EmptyBorder(50, 350, 50, 350));
         setLayout(new BorderLayout(0, 0));
@@ -49,13 +48,13 @@ public class ModifyPlanJPanel extends JPanel {
         setDown();
     }
     
-    private void setTextField(JTextField textField) {
-        textField.setOpaque(false);
-        textField.setFont(MainWindow.LABELFONT);
-        textField.setCaretColor(MainWindow.LABELFONTCOLOR);
-        textField.setForeground(MainWindow.LABELFONTCOLOR);
-        textField.setPreferredSize(new Dimension(0, 45));
-        textField.setBorder(new LineBorder(MainWindow.PANELBORDERCOLOR));
+    private void setTextField(JTextField pwdField) {
+        pwdField.setOpaque(false);
+        pwdField.setFont(MainWindow.LABELFONT);
+        pwdField.setCaretColor(MainWindow.LABELFONTCOLOR);
+        pwdField.setForeground(MainWindow.LABELFONTCOLOR);
+        pwdField.setPreferredSize(new Dimension(0, 45));
+        pwdField.setBorder(new LineBorder(MainWindow.PANELBORDERCOLOR));
     }
     
     private void setLabel(Label label) {
@@ -84,86 +83,61 @@ public class ModifyPlanJPanel extends JPanel {
     
     private void setUp() {
         JPanel panel = new JPanel();
-        JPanel titleJPanel = new JPanel();
-        JPanel typeJPanel = new JPanel();
-        JPanel timeJPanel = new JPanel();
-        JPanel duringJPanel = new JPanel();
+        JPanel pwdJPanel = new JPanel();
+        JPanel aimJPanel = new JPanel();
+        JPanel mailJPanel = new JPanel();
         
-        title = new Label();
-        type = new Label();
-        time = new Label();
-        during = new Label();
-        content = new Label();
+        pwd = new Label();
+        mail = new Label();
+        aim = new Label();
+        description = new Label();
         
-        titleField = new JTextField();
-        typeField = new JTextField();
-        timeField = new JTextField();
-        duringField = new JTextField();
+        pwdField = new JPasswordField();
+        mailField = new JTextField();
+        aimField = new JTextField();
         textArea = new JTextArea();
         
         panel.setOpaque(false);
         panel.setLayout(new VFlowLayout(VFlowLayout.TOP, 0, 0, false, false));
         
-        setJPanel(titleJPanel);
+        setJPanel(pwdJPanel);
         
-        title.setxText("标题：");
-        setLabel(title);
+        pwd.setxText("密码：");
+        setLabel(pwd);
 
-        setTextField(titleField);
-        titleField.addFocusListener(new JTextFieldHintListener(titleField, "输入标题"));
+        setTextField(pwdField);
+        pwdField.addFocusListener(new JTextFieldHintListener(pwdField, "******"));
         
-        titleJPanel.add(title, BorderLayout.WEST);
-        titleJPanel.add(titleField, BorderLayout.CENTER);
+        pwdJPanel.add(pwd, BorderLayout.WEST);
+        pwdJPanel.add(pwdField, BorderLayout.CENTER);
         
-        panel.add(titleJPanel);
+        panel.add(pwdJPanel);
         
-        setJPanel(typeJPanel);
+        setJPanel(mailJPanel);
         
-        type.setxText("类型：");
-        setLabel(type);
-
-        setTextField(typeField);
-        typeField.addFocusListener(new JTextFieldHintListener(typeField, "输入类型"));
+        mail.setxText("邮箱：");
+        setLabel(mail);
         
-        typeJPanel.add(type, BorderLayout.WEST);
-        typeJPanel.add(typeField, BorderLayout.CENTER);
+        setTextField(mailField);
+        mailField.addFocusListener(new JTextFieldHintListener(mailField, "输入邮箱"));
         
-        panel.add(typeJPanel);
+        mailJPanel.add(mail, BorderLayout.WEST);
+        mailJPanel.add(mailField, BorderLayout.CENTER);
         
-        setJPanel(timeJPanel);
+        panel.add(mailJPanel);
         
-        time.setxText("时间：");
-        setLabel(time);
+        setJPanel(aimJPanel);
         
-        setTextField(timeField);
-        timeField.addFocusListener(new JTextFieldHintListener(timeField, "时间格式为：yyyy-MM-dd HH:mm:ss"));
+        aim.setxText("目标：");
+        setLabel(aim);
         
-        timeJPanel.add(time, BorderLayout.WEST);
-        timeJPanel.add(timeField, BorderLayout.CENTER);
+        setTextField(aimField);
+        aimField.addFocusListener(new JTextFieldHintListener(aimField, "输入目标"));
         
-        panel.add(timeJPanel);
+        aimJPanel.add(aim, BorderLayout.WEST);
+        aimJPanel.add(aimField, BorderLayout.CENTER);
         
-        setJPanel(duringJPanel);
-        
-        during.setxText("持续时间：");
-        setLabel(during);
-        
-        setTextField(duringField);
-        duringField.addFocusListener(new JTextFieldHintListener(duringField, "输入多少个小时"));
-        
-        duringJPanel.add(during, BorderLayout.WEST);
-        duringJPanel.add(duringField, BorderLayout.CENTER);
-        
-        panel.add(duringJPanel);
-        
-        content.setxText("内容：");
-        content.setFont(MainWindow.LABELFONT);
-        content.setFontColor(MainWindow.LABELFONTCOLOR);
-        content.setLeft(true);
-        content.setOpaque(false);
-        content.setPreferredSize(new Dimension(width, 45));
-        
-        panel.add(content);
+        panel.add(aimJPanel);
         
         scrollPane2 = new JScrollPane();
         
@@ -173,7 +147,7 @@ public class ModifyPlanJPanel extends JPanel {
         textArea.setCaretColor(MainWindow.LABELFONTCOLOR);
         textArea.setForeground(MainWindow.LABELFONTCOLOR);
         textArea.setBorder(null);
-        textArea.addFocusListener(new JTextAreaHintListener(textArea, "填写内容"));
+        textArea.addFocusListener(new JTextAreaHintListener(textArea, "填写简介"));
         
         scrollPane2.setViewportView(textArea);
         scrollPane2.setBorder(new LineBorder(MainWindow.PANELBORDERCOLOR));
@@ -216,43 +190,35 @@ public class ModifyPlanJPanel extends JPanel {
         g.drawImage(new ImageIcon(MainWindow.BACKGROUNDIMAGE).getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
     }
 
-    public Label getTitle() {
-        return title;
+    public Label getpwd() {
+        return pwd;
     }
 
-    public Label getType() {
-        return type;
+    public Label getmail() {
+        return mail;
     }
 
-    public Label getTime() {
-        return time;
+    public Label getaim() {
+        return aim;
     }
 
-    public Label getDuring() {
-        return during;
+    public Label getdescription() {
+        return description;
     }
 
-    public Label getContent() {
-        return content;
+    public JTextField getpwdField() {
+        return pwdField;
     }
 
-    public JTextField getTitleField() {
-        return titleField;
+    public JTextField getmailField() {
+        return mailField;
     }
 
-    public JTextField getTypeField() {
-        return typeField;
+    public JTextField getaimField() {
+        return aimField;
     }
 
-    public JTextField getTimeField() {
-        return timeField;
-    }
-
-    public JTextField getDuringField() {
-        return duringField;
-    }
-
-    public JTextArea getContentArea() {
+    public JTextArea getdescriptionArea() {
         return textArea;
     }
 

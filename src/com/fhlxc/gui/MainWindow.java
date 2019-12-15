@@ -143,6 +143,7 @@ public class MainWindow extends JFrame {
             "2019年7月28日，文章通过微博宣布，与妻子马伊琍离婚 [15] " );
         student.setSt_aim("webhcd");
         student.setSt_name("nfjjdgs");
+        student.setSt_pwd("123456");
         student.setSt_mail("ddhjhdc");
         Data.student = student;
         if (Data.student != null) {

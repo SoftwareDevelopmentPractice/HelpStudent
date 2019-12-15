@@ -124,7 +124,7 @@ public class NoticeJpanel extends JPanel {
         scrollPane.getHorizontalScrollBar().setUI(new ScrollBarUI(new ImageIcon(MainWindow.SCROLLLEFTIMAGE).getImage(), new ImageIcon(MainWindow.SCROLLRIGHTIMAGE).getImage()));
         scrollPane.getHorizontalScrollBar().setUnitIncrement(MainWindow.SCROLLINCREMENT);
         scrollPane.getViewport().setOpaque(false);
-        scrollPane.setPreferredSize(new Dimension(260, 0));
+        scrollPane.setPreferredSize(new Dimension(280, 0));
         add(scrollPane, BorderLayout.WEST);
     }
     private void setContent() {
