@@ -14,22 +14,20 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 /**
-* @author Xingchao Long
-* @date 2019/56/15 11:56:33
-* @ClassName ModifyPlanJPanel
-* @Description 修改计划的面板，包括添加
+* @author Guangyao Gou
+* @date 2019/52/15 15:52:54
+* @ClassName ModifyTaskJpanel.java
+* @Description 修改任务的界面
 */
 
 @SuppressWarnings("serial")
-public class ModifyPlanJPanel extends JPanel {
+public class ModifyTaskJpanel extends JPanel{
     private Label title;
-    private Label type;
     private Label time;
     private Label during;
     private Label content;
     
     private JTextField titleField;
-    private JTextField typeField;
     private JTextField timeField;
     private JTextField duringField;
     private JTextArea textArea;
@@ -40,7 +38,7 @@ public class ModifyPlanJPanel extends JPanel {
     private Button ok;
     private Button cancel;
     
-    public ModifyPlanJPanel() {
+    public ModifyTaskJpanel() {
         setOpaque(false);
         setBorder(new EmptyBorder(50, 350, 50, 350));
         setLayout(new BorderLayout(0, 0));
@@ -85,18 +83,15 @@ public class ModifyPlanJPanel extends JPanel {
     private void setUp() {
         JPanel panel = new JPanel();
         JPanel titleJPanel = new JPanel();
-        JPanel typeJPanel = new JPanel();
         JPanel timeJPanel = new JPanel();
         JPanel duringJPanel = new JPanel();
         
         title = new Label();
-        type = new Label();
         time = new Label();
         during = new Label();
         content = new Label();
         
         titleField = new JTextField();
-        typeField = new JTextField();
         timeField = new JTextField();
         duringField = new JTextField();
         textArea = new JTextArea();
@@ -116,19 +111,6 @@ public class ModifyPlanJPanel extends JPanel {
         titleJPanel.add(titleField, BorderLayout.CENTER);
         
         panel.add(titleJPanel);
-        
-        setJPanel(typeJPanel);
-        
-        type.setxText("类型：");
-        setLabel(type);
-
-        setTextField(typeField);
-        typeField.addFocusListener(new JTextFieldHintListener(typeField, "输入类型"));
-        
-        typeJPanel.add(type, BorderLayout.WEST);
-        typeJPanel.add(typeField, BorderLayout.CENTER);
-        
-        panel.add(typeJPanel);
         
         setJPanel(timeJPanel);
         
@@ -220,10 +202,6 @@ public class ModifyPlanJPanel extends JPanel {
         return title;
     }
 
-    public Label getType() {
-        return type;
-    }
-
     public Label getTime() {
         return time;
     }
@@ -238,10 +216,6 @@ public class ModifyPlanJPanel extends JPanel {
 
     public JTextField getTitleField() {
         return titleField;
-    }
-
-    public JTextField getTypeField() {
-        return typeField;
     }
 
     public JTextField getTimeField() {
