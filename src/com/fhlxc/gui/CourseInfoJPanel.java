@@ -1,6 +1,7 @@
 package com.fhlxc.gui;
 
 import java.awt.Dimension;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -85,7 +86,7 @@ public class CourseInfoJPanel extends JPanel {
     private void setC_time() {
         c_time = new Label();
         
-        c_time.setxText("上课时间：" + course.getC_time().getTime());
+        c_time.setxText("上课时间：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(course.getC_time().getTime()));
         c_time.setPreferredSize(new Dimension(width, 25));
         
         setLable(c_time);

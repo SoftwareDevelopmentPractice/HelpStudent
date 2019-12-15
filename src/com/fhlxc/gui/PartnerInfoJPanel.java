@@ -1,11 +1,13 @@
 package com.fhlxc.gui;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import com.fhlxc.entity.Student;
@@ -23,15 +25,19 @@ public class PartnerInfoJPanel extends JPanel {
     
     private Label st_id;
     private Label st_name;
+    private Label st_mail;
     private Label st_aim;
     private Label st_description;
+    
+    private Button addTask;
+    private Button deletePartner;
     
     private JTextArea textArea;
     private JScrollPane scrollPane;
     
     private int width, height;
     
-    public PartnerInfoJPanel(Student partner, int width, int height) {
+    public PartnerInfoJPanel(Student partner, int width, int height, boolean modify) {
         this.partner = partner;
         this.width = width;
         this.height = height;
@@ -44,8 +50,43 @@ public class PartnerInfoJPanel extends JPanel {
         
         setSt_id();
         setSt_name();
+        setSt_mail();
         setSt_aim();
         setSt_description();
+        if (modify) {
+            setButtonJPanel();
+        }
+    }
+    
+    private void setButton(Button button) {
+        button.setFont(MainWindow.LABELFONT);
+        button.setFontColor(MainWindow.LABELFONTCOLOR);
+        button.setBorderColor(MainWindow.BORDERCOLOR);
+        button.setOpaque(false);
+        button.setColor(MainWindow.BUTTONCOLOR);
+        button.setHoverColor(MainWindow.BUTTONHOVERCOLOR);
+        button.setPressColor(MainWindow.BUTTONPRESSCOLOR);
+    }
+    
+    private void setButtonJPanel() {
+        JPanel buttonJPanel = new JPanel();
+        addTask = new Button();
+        deletePartner = new Button();
+        
+        buttonJPanel.setOpaque(false);
+        buttonJPanel.setBorder(new EmptyBorder(0, 50, 0, 50));
+        buttonJPanel.setLayout(new GridLayout(1, 2, 50, 50));
+        buttonJPanel.setPreferredSize(new Dimension(width, 25));
+        
+        addTask.setxText("添加任务");
+        setButton(addTask);
+        buttonJPanel.add(addTask);
+        
+        deletePartner.setxText("删除伙伴");
+        setButton(deletePartner);
+        buttonJPanel.add(deletePartner);
+        
+        add(buttonJPanel);
     }
     
     private void setLable(Label label) {
@@ -73,6 +114,16 @@ public class PartnerInfoJPanel extends JPanel {
         
         setLable(st_name);
         add(st_name);
+    }
+    
+    private void setSt_mail() {
+        st_mail = new Label();
+        
+        st_mail.setxText("邮件：" + partner.getSt_mail());
+        st_mail.setPreferredSize(new Dimension(width, 25));
+        
+        setLable(st_mail);
+        add(st_mail);
     }
     
     private void setSt_aim() {
@@ -112,7 +163,7 @@ public class PartnerInfoJPanel extends JPanel {
         scrollPane.getHorizontalScrollBar().setUI(new ScrollBarUI(new ImageIcon(MainWindow.SCROLLLEFTIMAGE).getImage(), new ImageIcon(MainWindow.SCROLLRIGHTIMAGE).getImage()));
         scrollPane.getHorizontalScrollBar().setUnitIncrement(MainWindow.SCROLLINCREMENT);
         scrollPane.getViewport().setOpaque(false);
-        scrollPane.setPreferredSize(new Dimension(width, height - 110));
+        scrollPane.setPreferredSize(new Dimension(width, height - 160));
         add(scrollPane);
     }
 
@@ -123,6 +174,10 @@ public class PartnerInfoJPanel extends JPanel {
     public Label getSt_name() {
         return st_name;
     }
+    
+    public Label getSt_mail() {
+        return st_mail;
+    }
 
     public Label getSt_aim() {
         return st_aim;
@@ -131,8 +186,20 @@ public class PartnerInfoJPanel extends JPanel {
     public Label getSt_description() {
         return st_description;
     }
+    
+    public Student getPartner() {
+        return this.partner;
+    }
 
     public JTextArea getTextArea() {
         return textArea;
+    }
+
+    public Button getAddTask() {
+        return addTask;
+    }
+
+    public Button getDeletePartner() {
+        return deletePartner;
     }
 }

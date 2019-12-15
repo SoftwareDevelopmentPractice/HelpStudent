@@ -6,10 +6,7 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -21,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 * @author Xingchao Long
 * @date 2019/29/12 14:29:19
 * @ClassName registerDialogJPanel
-* @Description 登录对话框的内容实现 148
+* @Description 登录对话框的内容实现
 */
 
 @SuppressWarnings("serial")
@@ -145,7 +142,7 @@ public class LoginDialogJPanel extends JPanel {
                 char[] values = pwdPasswordField.getPassword();
                 pwd = new String(values);
                 account = accountTextField.getText();
-                //登陆成功之后赋值ok
+                //TODO 登录成功之后做的事
                 state = OK;
                 loginDialog.setVisible(false);
             }
