@@ -106,6 +106,7 @@ public class MainWindow extends JFrame {
         });
         loginDialog.setVisible(true);
         if (loginDialogJPanel.getState() == LoginDialogJPanel.OK) {
+            contentJPanel.addJPanel(new InfoJPanel(Data.student), ContentJPanel.INFOJPANEL);
             return true;
         }
         return false;

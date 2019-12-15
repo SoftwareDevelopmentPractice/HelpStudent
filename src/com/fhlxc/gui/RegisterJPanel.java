@@ -14,6 +14,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import com.fhlxc.backend.Register;
+
 /**
 * @author Xingchao Long
 * @date 2019/54/12 15:54:53
@@ -103,7 +105,7 @@ public class RegisterJPanel extends JPanel {
         accountTextField.setForeground(MainWindow.LABELFONTCOLOR);
         accountTextField.setCaretColor(MainWindow.LABELFONTCOLOR);
         accountTextField.setFont(MainWindow.TEXTFONT);
-        accountTextField.addFocusListener(new JTextFieldHintListener(accountTextField, "输入账号"));
+        accountTextField.addFocusListener(new JTextFieldHintListener(accountTextField, "输入账号,少于16字符"));
         
         accountPanel.setLayout(new BorderLayout());
         accountPanel.setOpaque(false);
@@ -160,7 +162,33 @@ public class RegisterJPanel extends JPanel {
                 account = accountTextField.getText();
                 mail = mailTextField.getText();
                 //TODO something 成功之后下面这句代码，并接上提示框
-                registerDialog.setVisible(false);
+                Register register = new Register();
+                int state = register.register(account, mail, pwd);
+                switch (state) {
+                case Register.SUCCESS: {
+                    MainWindow.dialog.setDialog("注册成功", MainWindow.SUCCESSIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    registerDialog.setVisible(false);
+                    break;
+                }
+                case Register.MAILERROR: {
+                    MainWindow.dialog.setDialog("邮箱格式错误", MainWindow.ERRORIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    break;
+                }
+                case Register.ACCOUNTERROR1: {
+                    MainWindow.dialog.setDialog("用户名过长", MainWindow.ERRORIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    break;
+                }
+                case Register.ACCOUNTERROR2: {
+                    MainWindow.dialog.setDialog("用户已经注册", MainWindow.ERRORIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    break;
+                }
+                default:
+                    throw new IllegalArgumentException("Unexpected value: " + state);
+                }
             }
         });
         
