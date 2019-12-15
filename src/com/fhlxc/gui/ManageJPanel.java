@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 * @author Xingchao Long
 * @date 2019/31/12 20:31:48
 * @ClassName ManageJPanel
-* @Description 课表管理的页面 47 67 87 107
+* @Description 课表管理的页面
 */
 
 @SuppressWarnings("serial")
@@ -53,11 +53,12 @@ public class ManageJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO something 弹出相关的窗口
+                
                 JDialog dialog = new JDialog();
                 setDialog(dialog);
                 dialog.setTitle("课程管理");
                 CourseManageJPanel courseManageJPanel = new CourseManageJPanel(dialog);
+                //TODO something 查询数据库，将结果添加
                 dialog.setContentPane(courseManageJPanel);
                 dialog.setVisible(true);
             }
@@ -79,11 +80,11 @@ public class ManageJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO something 弹出相关的窗口
                 JDialog dialog = new JDialog();
                 setDialog(dialog);
                 dialog.setTitle("任务管理");
                 TaskManageJPanel taskManageJPanel = new TaskManageJPanel(dialog);
+                //TODO something 查询数据库，将结果添加
                 dialog.setContentPane(taskManageJPanel);
                 dialog.setVisible(true);
             }
@@ -105,11 +106,11 @@ public class ManageJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO something 弹出相关的窗口
                 JDialog dialog = new JDialog();
                 setDialog(dialog);
                 dialog.setTitle("计划管理");
                 PlanManageJPanel planManageJPanel = new PlanManageJPanel(dialog);
+                //TODO something 查询数据库，将结果添加
                 dialog.setContentPane(planManageJPanel);
                 dialog.setVisible(true);
             }
@@ -131,11 +132,11 @@ public class ManageJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO something 弹出相关的窗口
                 JDialog dialog = new JDialog();
                 setDialog(dialog);
                 dialog.setTitle("校车提醒");
-                SchoolbusManageJPanel schoolbusManageJPanel = new SchoolbusManageJPanel(dialog);
+                SchoolbusManageJPanel schoolbusManageJPanel = new SchoolbusManageJPanel(dialog, true);
+                //TODO something 查询数据库，将结果添加
                 dialog.setContentPane(schoolbusManageJPanel);
                 dialog.setVisible(true);
             }

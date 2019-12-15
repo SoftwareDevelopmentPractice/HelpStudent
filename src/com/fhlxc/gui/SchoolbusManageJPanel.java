@@ -27,9 +27,11 @@ public class SchoolbusManageJPanel extends JPanel {
     private SchoolbusInfoJPanel currSchoolbusInfoJPanel;
     private JScrollPane scrollPane1;
     private JDialog dialog;
+    private boolean modify;
     
-    public SchoolbusManageJPanel(JDialog dialog) {
+    public SchoolbusManageJPanel(JDialog dialog, boolean modify) {
         this.dialog = dialog;
+        this.modify = modify;
         
         setOpaque(false);
         setBorder(new EmptyBorder(150, 600, 150, 600));
@@ -84,7 +86,7 @@ public class SchoolbusManageJPanel extends JPanel {
     }
     
     public void addSchoolbusInfo(Schoolbus schoolbus) {
-        SchoolbusInfoJPanel schoolbusInfoJPanel = new SchoolbusInfoJPanel(schoolbus, MainWindow.initialWidth / 3 + 20, 100);
+        SchoolbusInfoJPanel schoolbusInfoJPanel = new SchoolbusInfoJPanel(schoolbus, MainWindow.initialWidth / 3 + 20, 100, modify);
         
         schoolbusInfoJPanel.getSb_id().addActionListener(new ActionListener() {
             
@@ -116,18 +118,20 @@ public class SchoolbusManageJPanel extends JPanel {
             }
         });
         
-        schoolbusInfoJPanel.getConfig().addActionListener(new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Button button = (Button) e.getSource();
-                SchoolbusInfoJPanel p = (SchoolbusInfoJPanel) button.getParent();
-                clicked(p);
-                dialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-                //TODO something设置提醒
-                dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            }
-        });
+        if (modify) {
+            schoolbusInfoJPanel.getConfig().addActionListener(new ActionListener() {
+                
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Button button = (Button) e.getSource();
+                    SchoolbusInfoJPanel p = (SchoolbusInfoJPanel) button.getParent();
+                    clicked(p);
+                    dialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                    //TODO something设置提醒
+                    dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                }
+            });
+        }
         
         contentJPanel.add(schoolbusInfoJPanel);
     }

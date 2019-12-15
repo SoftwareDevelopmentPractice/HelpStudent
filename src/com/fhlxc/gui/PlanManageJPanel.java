@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -19,7 +20,7 @@ import com.fhlxc.entity.Plan;
 * @author Xingchao Long
 * @date 2019/39/14 21:39:42
 * @ClassName PlanManageJPanel
-* @Description 计划管理页 83 96 152 163 174 185
+* @Description 计划管理页 152 163 174 185
 */
 
 @SuppressWarnings("serial")
@@ -49,12 +50,13 @@ public class PlanManageJPanel extends JPanel {
         planJPanel.setOpaque(false);
         planJPanel.setLayout(new VFlowLayout(VFlowLayout.TOP, 0, 0, false, false));
         
-        /* for (int i = 1; i < 20; i++) {
+        /*for (int i = 1; i < 20; i++) {
             Plan plan = new Plan();
             plan.setPl_during(3);
             plan.setPl_time(Calendar.getInstance());
             plan.setPl_title("尝试");
             plan.setPl_type("wode");
+            plan.setPl_content("对方水电费胜多负少的风格与市分公司的语法个多月发扬光大已发供应商的费用水电费水电费高速的股份苏");
 
             addPlanInfo(plan);
          }*/
@@ -78,8 +80,7 @@ public class PlanManageJPanel extends JPanel {
             p.setBackground(MainWindow.PANELSELECTEDCOLOR);
             currPlanInfoJPanel = p;
             dialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-            //TODO something 点击后,添加右侧的任务信息,调用addTaskInfo()函数
-            textArea.setText("fdsds");
+            textArea.setText(currPlanInfoJPanel.getPlan().getPl_content());
             dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             return;
         }
@@ -91,7 +92,7 @@ public class PlanManageJPanel extends JPanel {
             currPlanInfoJPanel = p;
             currPlanInfoJPanel.repaint();
             dialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-            //TODO something 点击后,添加右侧的任务信息，调用addTaskInfo()函数
+            textArea.setText(currPlanInfoJPanel.getPlan().getPl_content());
             dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             return;
         }
