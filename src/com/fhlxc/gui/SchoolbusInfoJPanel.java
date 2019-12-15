@@ -25,7 +25,7 @@ public class SchoolbusInfoJPanel extends JPanel {
     
     private Schoolbus schoolbus;
     
-    public SchoolbusInfoJPanel(Schoolbus schoolbus, int width, int height) {
+    public SchoolbusInfoJPanel(Schoolbus schoolbus, int width, int height, boolean modify) {
         this.schoolbus = schoolbus;
         
         setOpaque(false);
@@ -36,7 +36,9 @@ public class SchoolbusInfoJPanel extends JPanel {
         setSb_id();
         setSb_arrival();
         setSb_time();
-        setConfig();
+        if (modify) {
+            setConfig();
+        }
     }
     
     private void setLable(Label label) {

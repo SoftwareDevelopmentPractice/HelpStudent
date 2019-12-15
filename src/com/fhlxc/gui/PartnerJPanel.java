@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import com.fhlxc.entity.Student;
 import com.fhlxc.entity.Task;
@@ -66,7 +67,7 @@ public class PartnerJPanel extends JPanel {
         
         scrollPane1 = new JScrollPane();
         scrollPane1.setViewportView(friendJPanel);
-        scrollPane1.setBorder(null);
+        scrollPane1.setBorder(new LineBorder(MainWindow.PANELBORDERCOLOR));
         scrollPane1.setOpaque(false);
         scrollPane1.getVerticalScrollBar().setUI(new ScrollBarUI(new ImageIcon(MainWindow.SCROLLUPIMAGE).getImage(), new ImageIcon(MainWindow.SCROLLDOWNIMAGE).getImage()));
         scrollPane1.getVerticalScrollBar().setUnitIncrement(MainWindow.SCROLLINCREMENT);
@@ -188,7 +189,7 @@ public class PartnerJPanel extends JPanel {
         
         scrollPane2 = new JScrollPane();
         scrollPane2.setViewportView(taskJPanel);
-        scrollPane2.setBorder(null);
+        scrollPane2.setBorder(new LineBorder(MainWindow.PANELBORDERCOLOR));
         scrollPane2.setOpaque(false);
         scrollPane2.getVerticalScrollBar().setUI(new ScrollBarUI(new ImageIcon(MainWindow.SCROLLUPIMAGE).getImage(), new ImageIcon(MainWindow.SCROLLDOWNIMAGE).getImage()));
         scrollPane2.getVerticalScrollBar().setUnitIncrement(MainWindow.SCROLLINCREMENT);
