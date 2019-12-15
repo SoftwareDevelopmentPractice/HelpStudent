@@ -19,7 +19,7 @@ import com.fhlxc.entity.Course;
 * @author Xingchao Long
 * @date 2019/52/14 09:52:37
 * @ClassName CourseManageJPanel
-* @Description 课表管理页的界面 73 87 104
+* @Description 课表管理页的界面
 */
 
 @SuppressWarnings("serial")
@@ -70,7 +70,7 @@ public class CourseManageJPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-                //导入课表要做的事情
+                //TODO 导入课表
                 dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
@@ -84,7 +84,7 @@ public class CourseManageJPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-                //清空课表要做的事情
+                //TODO 清空课表信息
                 dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
@@ -100,7 +100,7 @@ public class CourseManageJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                //点击设置提醒的按钮所做的事情
+                //TODO 设置提醒
             }
         });
         

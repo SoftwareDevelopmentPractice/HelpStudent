@@ -20,7 +20,7 @@ import javax.swing.border.EmptyBorder;
 * @author Xingchao Long
 * @date 2019/54/12 15:54:53
 * @ClassName RegisterJPanel
-* @Description 注册对话框的页面 162
+* @Description 注册对话框的页面
 */
 
 @SuppressWarnings("serial")

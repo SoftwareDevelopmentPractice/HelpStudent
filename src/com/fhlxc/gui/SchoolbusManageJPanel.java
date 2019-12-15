@@ -18,7 +18,7 @@ import com.fhlxc.entity.Schoolbus;
 * @author Xingchao Long
 * @date 2019/03/14 23:03:28
 * @ClassName SchoolbusManageJPanel
-* @Description 校车提醒的设置页面 128
+* @Description 校车提醒的设置页面
 */
 
 @SuppressWarnings("serial")

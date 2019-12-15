@@ -2,6 +2,7 @@ package com.fhlxc.gui;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -78,7 +79,7 @@ public class PlanInfoJPanel extends JPanel {
     private void setPl_time() {
         pl_time = new Label();
         
-        pl_time.setxText("时间：" + plan.getPl_time().getTime());
+        pl_time.setxText("时间：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(plan.getPl_time().getTime()));
         
         setLable(pl_time);
         add(pl_time);

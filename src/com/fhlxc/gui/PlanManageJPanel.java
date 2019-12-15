@@ -4,8 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -20,7 +23,7 @@ import com.fhlxc.entity.Plan;
 * @author Xingchao Long
 * @date 2019/39/14 21:39:42
 * @ClassName PlanManageJPanel
-* @Description 计划管理页 152 163 174 185
+* @Description 计划管理页
 */
 
 @SuppressWarnings("serial")
@@ -50,7 +53,7 @@ public class PlanManageJPanel extends JPanel {
         planJPanel.setOpaque(false);
         planJPanel.setLayout(new VFlowLayout(VFlowLayout.TOP, 0, 0, false, false));
         
-        /*for (int i = 1; i < 20; i++) {
+        for (int i = 1; i < 20; i++) {
             Plan plan = new Plan();
             plan.setPl_during(3);
             plan.setPl_time(Calendar.getInstance());
@@ -59,7 +62,7 @@ public class PlanManageJPanel extends JPanel {
             plan.setPl_content("对方水电费胜多负少的风格与市分公司的语法个多月发扬光大已发供应商的费用水电费水电费高速的股份苏");
 
             addPlanInfo(plan);
-         }*/
+         }
         
         scrollPane1 = new JScrollPane();
         scrollPane1.setViewportView(planJPanel);
@@ -96,6 +99,12 @@ public class PlanManageJPanel extends JPanel {
             dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             return;
         }
+    }
+    
+    private void setDialog(JDialog dialog) {
+        dialog.setModal(true);
+        dialog.setIconImage(new ImageIcon(MainWindow.STARTUPIMAGE).getImage());
+        dialog.setSize(Toolkit.getDefaultToolkit().getScreenSize());
     }
     
     public void addPlanInfo(Plan plan) {
@@ -148,7 +157,26 @@ public class PlanManageJPanel extends JPanel {
                 Button button = (Button) e.getSource();
                 PlanInfoJPanel p = (PlanInfoJPanel) button.getParent().getParent();
                 clicked(p);
-                //显示添加计划的对话框
+                JDialog dialog = new JDialog();
+                setDialog(dialog);
+                dialog.setTitle("添加计划");
+                ModifyPlanJPanel modifyPlanJPanel = new ModifyPlanJPanel();
+                modifyPlanJPanel.getOk().addActionListener(new ActionListener() {
+                    
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //TODO 添加计划
+                    }
+                });
+                modifyPlanJPanel.getCancel().addActionListener(new ActionListener() {
+                    
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        dialog.setVisible(false);
+                    }
+                });
+                dialog.setContentPane(modifyPlanJPanel);
+                dialog.setVisible(true);
             }
         });
         
@@ -159,7 +187,34 @@ public class PlanManageJPanel extends JPanel {
                 Button button = (Button) e.getSource();
                 PlanInfoJPanel p = (PlanInfoJPanel) button.getParent().getParent();
                 clicked(p);
-                //弹出修改对话框
+                JDialog dialog = new JDialog();
+                setDialog(dialog);
+                dialog.setTitle("修改计划");
+                ModifyPlanJPanel modifyPlanJPanel = new ModifyPlanJPanel();
+                Plan plan = p.getPlan();
+                
+                modifyPlanJPanel.getTitleField().setText(plan.getPl_title());
+                modifyPlanJPanel.getTypeField().setText(plan.getPl_type());
+                modifyPlanJPanel.getTimeField().setText(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(plan.getPl_time().getTime()));
+                modifyPlanJPanel.getDuringField().setText(plan.getPl_during() + "");
+                modifyPlanJPanel.getContentArea().setText(plan.getPl_content());
+                
+                modifyPlanJPanel.getOk().addActionListener(new ActionListener() {
+                    
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //TODO 修改内容
+                    }
+                });
+                modifyPlanJPanel.getCancel().addActionListener(new ActionListener() {
+                    
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        dialog.setVisible(false);
+                    }
+                });
+                dialog.setContentPane(modifyPlanJPanel);
+                dialog.setVisible(true);
             }
         });
         
@@ -170,7 +225,7 @@ public class PlanManageJPanel extends JPanel {
                 Button button = (Button) e.getSource();
                 PlanInfoJPanel p = (PlanInfoJPanel) button.getParent().getParent();
                 clicked(p);
-                //删除这个面板
+                //TODO 删除这个计划
             }
         });
         
@@ -181,7 +236,7 @@ public class PlanManageJPanel extends JPanel {
                 Button button = (Button) e.getSource();
                 PlanInfoJPanel p = (PlanInfoJPanel) button.getParent().getParent();
                 clicked(p);
-                //设置提醒
+                //TODO 设置或取消提醒
             }
         });
         
