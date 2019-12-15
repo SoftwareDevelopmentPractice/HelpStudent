@@ -1,6 +1,6 @@
 package com.fhlxc.entity;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  * @author Xingchao Long
@@ -13,7 +13,7 @@ public class Plan {
     private String pl_title;
     private String pl_type;
     private String pl_content;
-    private Date pl_time;
+    private Calendar pl_time;
     private int pl_during;
     private boolean pl_config;
 
@@ -41,11 +41,11 @@ public class Plan {
         this.pl_content = pl_content;
     }
 
-    public Date getPl_time() {
+    public Calendar getPl_time() {
         return pl_time;
     }
 
-    public void setPl_time(Date pl_time) {
+    public void setPl_time(Calendar pl_time) {
         this.pl_time = pl_time;
     }
 
