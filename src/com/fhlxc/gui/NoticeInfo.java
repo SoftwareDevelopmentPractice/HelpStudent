@@ -1,11 +1,11 @@
 package com.fhlxc.gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 import com.fhlxc.entity.Notice;
 
@@ -26,6 +26,7 @@ public class NoticeInfo extends JPanel {
         this.notice = notice;
         setOpaque(false);
         setLayout(new GridLayout(2, 1));
+        setBorder(new LineBorder(MainWindow.PANELBORDERCOLOR));
         setPreferredSize(new Dimension(250, 60));
         setn_id();
         setn_title();
