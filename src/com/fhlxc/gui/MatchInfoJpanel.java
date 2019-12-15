@@ -114,4 +114,24 @@ import com.fhlxc.entity.Student;
             scrollPane.setPreferredSize(new Dimension(width, height - 110));
             add(scrollPane);
         }
+    
+    public Label getSt_id() {
+        return st_id;
     }
+
+    public Label getSt_name() {
+        return st_name;
+    }
+
+    public Label getSt_aim() {
+        return st_aim;
+    }
+
+    public Label getSt_description() {
+        return st_description;
+    }
+
+    public JTextArea getTextArea() {
+        return textArea;
+    }
+}
