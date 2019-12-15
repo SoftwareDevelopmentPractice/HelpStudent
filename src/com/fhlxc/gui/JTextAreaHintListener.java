@@ -21,8 +21,8 @@ public class JTextAreaHintListener implements FocusListener {
         this.textArea = textArea;
         this.hintText = hintText;
         
-        this.textArea.setText(hintText);  //默认直接显示
-        this.textArea.setForeground(Color.GRAY);
+        this.textArea.setText(hintText);
+        this.textArea.setForeground(Color.gray);
     }
  
     @Override
@@ -32,8 +32,8 @@ public class JTextAreaHintListener implements FocusListener {
         
         if(temp.equals(hintText)) {
             this.textArea.setText("");
-            this.textArea.setForeground(MainWindow.LABELFONTCOLOR);
         }
+        this.textArea.setForeground(MainWindow.LABELFONTCOLOR);
     }
  
     @Override
@@ -42,8 +42,8 @@ public class JTextAreaHintListener implements FocusListener {
         String temp = this.textArea.getText();
         
         if(temp.equals("")) {
-            this.textArea.setForeground(Color.GRAY);
             this.textArea.setText(hintText);
         }
+        this.textArea.setForeground(Color.GRAY);
     }
 }

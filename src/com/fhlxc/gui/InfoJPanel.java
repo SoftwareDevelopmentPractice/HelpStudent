@@ -20,7 +20,7 @@ import com.fhlxc.entity.Student;
 * @author Xingchao Long
 * @date 2019/40/14 13:40:07
 * @ClassName InfoJPanel
-* @Description 信息页 79 91 103
+* @Description 信息页
 */
 
 @SuppressWarnings("serial")
@@ -88,7 +88,6 @@ public class InfoJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                //显示校车时刻表对话框
                 JDialog dialog = new JDialog();
                 setDialog(dialog);
                 dialog.setTitle("校车时刻表");
@@ -106,7 +105,6 @@ public class InfoJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                //显示今日任务信息对话框
                 JDialog dialog = new JDialog();
                 setDialog(dialog);
                 dialog.setTitle("今日需要做的事");
@@ -124,7 +122,7 @@ public class InfoJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                //显示修改个人信息的对话框
+                //TODO 弹出个人信息修改对话框
             }
         });
         buttonJPanel.add(modifyButton);

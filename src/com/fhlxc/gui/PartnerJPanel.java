@@ -23,7 +23,7 @@ import com.fhlxc.entity.Task;
 * @author Xingchao Long
 * @date 2019/10/12 21:10:16
 * @ClassName FriendJPanel
-* @Description 伙伴页的界面 84 109
+* @Description 伙伴页的界面
 */
 
 @SuppressWarnings("serial")

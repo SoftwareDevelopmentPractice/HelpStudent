@@ -23,7 +23,7 @@ import com.fhlxc.entity.Task;
 * @author Xingchao Long
 * @date 2019/00/14 20:00:29
 * @ClassName TaskManageJPanel
-* @Description 任务管理的页面 87 112 188 199 230 237 245
+* @Description 任务管理的页面
 */
 
 @SuppressWarnings("serial")
@@ -185,7 +185,7 @@ public class TaskManageJPanel extends JPanel {
                 Button button = (Button) e.getSource();
                 PartnerInfoJPanel p = (PartnerInfoJPanel) button.getParent().getParent();
                 clicked(p);
-                //显示添加任务的对话框
+                //TODO 添加任务对话框
             }
         });
         
@@ -196,7 +196,7 @@ public class TaskManageJPanel extends JPanel {
                 Button button = (Button) e.getSource();
                 PartnerInfoJPanel p = (PartnerInfoJPanel) button.getParent().getParent();
                 clicked(p);
-                //删除这个面板
+                //TODO 删除伙伴
             }
         });
         
@@ -227,21 +227,21 @@ public class TaskManageJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                //弹出修改对话框对话框
+                //TODO 修改对话框
             }
         });
         taskInfoJPanel.getDeleteTask().addActionListener(new ActionListener() {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                //删除此任务
+                //TODO删除此任务
             }
         });
         taskInfoJPanel.getConfig().addActionListener(new ActionListener() {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                //提醒设置
+                //TODO 设置提醒
             }
         });
         taskJPanel.add(taskInfoJPanel);
