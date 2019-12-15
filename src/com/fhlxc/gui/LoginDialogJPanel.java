@@ -14,6 +14,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import com.fhlxc.backend.LogIn;
+
 /**
 * @author Xingchao Long
 * @date 2019/29/12 14:29:19
@@ -144,8 +146,15 @@ public class LoginDialogJPanel extends JPanel {
                 pwd = new String(values);
                 account = accountTextField.getText();
                 //TODO 登录成功之后做的事
-                state = OK;
-                loginDialog.setVisible(false);
+                LogIn logIn = new LogIn();
+                if (logIn.logIn(account, pwd)) {
+                    state = OK;
+                    loginDialog.setVisible(false);
+                } else {
+                    state = CANCEL;
+                    MainWindow.dialog.setDialog("账户或密码错误", MainWindow.ERRORIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                }
             }
         });
         
