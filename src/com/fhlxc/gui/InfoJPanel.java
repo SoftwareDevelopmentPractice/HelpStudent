@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -14,7 +15,9 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import com.fhlxc.data.Data;
 import com.fhlxc.entity.Student;
+import com.fhlxc.entity.Task;
 
 /**
 * @author Xingchao Long
@@ -121,8 +124,35 @@ public class InfoJPanel extends JPanel {
         modifyButton.addActionListener(new ActionListener() {
             
             @Override
-            public void actionPerformed(ActionEvent e) {
-                //TODO 弹出个人信息修改对话框
+            public void actionPerformed(ActionEvent e) {           
+                JDialog dialog = new JDialog();
+                setDialog(dialog);
+                dialog.setTitle("修改个人信息");
+                ModifyOwninfoJpanel modifyOwninfoJpanel = new ModifyOwninfoJpanel();
+                Student student = Data.student;
+                
+                modifyOwninfoJpanel.getpwdField().setText(student.getSt_pwd());
+                modifyOwninfoJpanel.getmailField().setText(student.getSt_mail());
+                modifyOwninfoJpanel.getaimField().setText(student.getSt_aim());
+                modifyOwninfoJpanel.getdescriptionArea().setText(student.getSt_description());
+                
+                modifyOwninfoJpanel.getOk().addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        // TODO 修改内容
+                    }
+                });
+                modifyOwninfoJpanel.getCancel().addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        dialog.setVisible(false);
+                    }
+                });
+                
+                dialog.setContentPane(modifyOwninfoJpanel);
+                dialog.setVisible(true);
             }
         });
         buttonJPanel.add(modifyButton);
