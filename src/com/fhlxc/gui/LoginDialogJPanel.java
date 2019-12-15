@@ -85,9 +85,10 @@ public class LoginDialogJPanel extends JPanel {
         
         accountTextField.setOpaque(false);
         accountTextField.setBorder(null);
-        accountTextField.setForeground(MainWindow.BUTTONFONTCOLOR);
-        accountTextField.setCaretColor(MainWindow.BUTTONFONTCOLOR);
+        accountTextField.setForeground(MainWindow.LABELFONTCOLOR);
+        accountTextField.setCaretColor(MainWindow.LABELFONTCOLOR);
         accountTextField.setFont(MainWindow.TEXTFONT);
+        accountTextField.addFocusListener(new JTextFieldHintListener(accountTextField, "输入学号"));
         
         accountPanel.setLayout(new BorderLayout());
         accountPanel.setOpaque(false);
@@ -102,8 +103,8 @@ public class LoginDialogJPanel extends JPanel {
         
         pwdPasswordField.setOpaque(false);
         pwdPasswordField.setBorder(null);
-        pwdPasswordField.setForeground(MainWindow.BUTTONFONTCOLOR);
-        pwdPasswordField.setCaretColor(MainWindow.BUTTONFONTCOLOR);
+        pwdPasswordField.setForeground(MainWindow.LABELFONTCOLOR);
+        pwdPasswordField.setCaretColor(MainWindow.LABELFONTCOLOR);
         pwdPasswordField.setFont(MainWindow.TEXTFONT);
         
         pwdPanel.setLayout(new BorderLayout());

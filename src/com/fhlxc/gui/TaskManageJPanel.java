@@ -19,7 +19,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
-import com.fhlxc.entity.Plan;
 import com.fhlxc.entity.Student;
 import com.fhlxc.entity.Task;
 

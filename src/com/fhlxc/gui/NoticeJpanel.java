@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import com.fhlxc.entity.Notice;
 
@@ -37,8 +38,8 @@ public class NoticeJpanel extends JPanel {
         this.frame = frame;
         
         setOpaque(false);
-        setBorder(new EmptyBorder(50, 200, 50, 50));
-        setLayout(new BorderLayout(0, 0));
+        setBorder(new EmptyBorder(100, 200, 100, 200));
+        setLayout(new BorderLayout(100, 0));
         setinfoJpanel();      
         setContent();
     }
@@ -102,7 +103,7 @@ public class NoticeJpanel extends JPanel {
         infoJPanel.setLayout(new VFlowLayout(VFlowLayout.TOP, 0, 0, false, false));
         infoJPanel.setOpaque(false);
 
-        for (int i = 1; i < 20; i++) {
+        /*for (int i = 1; i < 20; i++) {
             Notice notice = new Notice();
             notice.setN_title("阿拉贡");
             notice.setN_id("123");
@@ -113,11 +114,11 @@ public class NoticeJpanel extends JPanel {
                             + "2019年7月28日，文章通过微博宣布，与妻子马伊琍离婚 [15]  ");
             
             addNoticeInfo(notice);
-        }
+        }*/
 
         scrollPane = new JScrollPane();
         scrollPane.setViewportView(infoJPanel);
-        scrollPane.setBorder(null);
+        scrollPane.setBorder(new LineBorder(MainWindow.PANELBORDERCOLOR));
         scrollPane.setOpaque(false);
         scrollPane.getVerticalScrollBar().setUI(new ScrollBarUI(new ImageIcon(MainWindow.SCROLLUPIMAGE).getImage(), new ImageIcon(MainWindow.SCROLLDOWNIMAGE).getImage()));
         scrollPane.getVerticalScrollBar().setUnitIncrement(MainWindow.SCROLLINCREMENT);
@@ -140,7 +141,7 @@ public class NoticeJpanel extends JPanel {
         
         scroPane.setViewportView(textArea);
         scroPane.setOpaque(false);
-        scroPane.setBorder(null);
+        scroPane.setBorder(new LineBorder(MainWindow.PANELBORDERCOLOR));
         scroPane.getVerticalScrollBar().setUI(new ScrollBarUI(new ImageIcon(MainWindow.SCROLLUPIMAGE).getImage(), new ImageIcon(MainWindow.SCROLLDOWNIMAGE).getImage()));
         scroPane.getVerticalScrollBar().setUnitIncrement(MainWindow.SCROLLINCREMENT);
         scroPane.getHorizontalScrollBar().setUI(new ScrollBarUI(new ImageIcon(MainWindow.SCROLLLEFTIMAGE).getImage(), new ImageIcon(MainWindow.SCROLLRIGHTIMAGE).getImage()));
