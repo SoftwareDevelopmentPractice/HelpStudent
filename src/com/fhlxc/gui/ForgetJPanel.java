@@ -84,9 +84,10 @@ public class ForgetJPanel extends JPanel {
         
         accountTextField.setOpaque(false);
         accountTextField.setBorder(null);
-        accountTextField.setForeground(MainWindow.BUTTONFONTCOLOR);
-        accountTextField.setCaretColor(MainWindow.BUTTONFONTCOLOR);
+        accountTextField.setForeground(MainWindow.LABELFONTCOLOR);
+        accountTextField.setCaretColor(MainWindow.LABELFONTCOLOR);
         accountTextField.setFont(MainWindow.TEXTFONT);
+        accountTextField.addFocusListener(new JTextFieldHintListener(accountTextField, "输入账号"));
         
         accountPanel.setLayout(new BorderLayout());
         accountPanel.setOpaque(false);
@@ -101,9 +102,10 @@ public class ForgetJPanel extends JPanel {
         
         vcodeTextField.setOpaque(false);
         vcodeTextField.setBorder(null);
-        vcodeTextField.setForeground(MainWindow.BUTTONFONTCOLOR);
-        vcodeTextField.setCaretColor(MainWindow.BUTTONFONTCOLOR);
+        vcodeTextField.setForeground(MainWindow.LABELFONTCOLOR);
+        vcodeTextField.setCaretColor(MainWindow.LABELFONTCOLOR);
         vcodeTextField.setFont(MainWindow.TEXTFONT);
+        vcodeTextField.addFocusListener(new JTextFieldHintListener(vcodeTextField, "输入验证码"));
         
         sendButton.setOpaque(false);
         sendButton.setxText("发送");
