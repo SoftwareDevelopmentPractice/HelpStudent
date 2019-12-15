@@ -6,6 +6,10 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Calendar;
 
 import javax.swing.ImageIcon;
@@ -48,7 +52,7 @@ public class MatchJPanel extends JPanel {
     
 
     
-    public MatchJPanel() {
+    public MatchJPanel(JFrame frame) {
         this.frame = frame;
         
         JLabel  = new javax.swing.JLabel();
@@ -71,6 +75,7 @@ public class MatchJPanel extends JPanel {
         setLayout(new BorderLayout(900, 0));
         setStudentJPanel();
         setDescribeJPanel();
+
         
 
 
@@ -101,11 +106,11 @@ public class MatchJPanel extends JPanel {
         j2.add(tfMatchj2);
     }
         
-    private void clicked(MatchInfoJpanel p) {
+    private void clicked(MatchInfoJpanel m) {
         if (currMatchInfoJPanel == null) {
-            p.setOpaque(true);
-            p.setBackground(MainWindow.PANELSELECTEDCOLOR);
-            currMatchInfoJPanel = p;
+            m.setOpaque(true);
+            m.setBackground(MainWindow.PANELSELECTEDCOLOR);
+            currMatchInfoJPanel = m;
             frame.setCursor(new Cursor(Cursor.WAIT_CURSOR));
             //TODO something 点击后,添加右侧的任务信息,调用addTaskInfo()函数
             /*taskJPanel.removeAll();
@@ -124,12 +129,12 @@ public class MatchJPanel extends JPanel {
             frame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             return;
         }
-        if (p != currMatchInfoJPanel) {
+        if (m != currMatchInfoJPanel) {
             currMatchInfoJPanel.setOpaque(false);
             currMatchInfoJPanel.repaint();
-            p.setOpaque(true);
-            p.setBackground(MainWindow.PANELSELECTEDCOLOR);
-            currMatchInfoJPanel = p;
+            m.setOpaque(true);
+            m.setBackground(MainWindow.PANELSELECTEDCOLOR);
+            currMatchInfoJPanel = m;
             currMatchInfoJPanel.repaint();
             frame.setCursor(new Cursor(Cursor.WAIT_CURSOR));
             //TODO something 点击后,添加右侧的任务信息，调用addTaskInfo()函数
@@ -139,7 +144,60 @@ public class MatchJPanel extends JPanel {
         }
     }
     
-    
+    public void addMatchInfo(Student student) {
+        MatchInfoJpanel matchInfoJPanel = new MatchInfoJpanel(student, MainWindow.initialWidth*2/3, MainWindow.initialHeight /6);
+        
+        matchInfoJPanel.getSt_id().addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Label label = (Label) e.getSource();
+                MatchInfoJpanel m = (MatchInfoJpanel) label.getParent();
+                clicked(m);
+            }
+        });
+        
+        matchInfoJPanel.getSt_name().addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Label label = (Label) e.getSource();
+                MatchInfoJpanel m = (MatchInfoJpanel) label.getParent();
+                clicked(m);
+            }
+        });
+        
+        matchInfoJPanel.getSt_aim().addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Label label = (Label) e.getSource();
+                MatchInfoJpanel m = (MatchInfoJpanel) label.getParent();
+                clicked(m);
+            }
+        });
+        
+        matchInfoJPanel.getSt_description().addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Label label = (Label) e.getSource();
+                MatchInfoJpanel m = (MatchInfoJpanel) label.getParent();
+                clicked(m);
+            }
+        });
+        
+        matchInfoJPanel.getTextArea().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JTextArea textArea = (JTextArea) e.getSource();
+                MatchInfoJpanel m = (MatchInfoJpanel) textArea.getParent().getParent().getParent();
+                clicked(m);
+            }
+        });
+        
+        studentJPanel.add(matchInfoJPanel);
+    }
     
     
         private void setStudentJPanel() {
@@ -150,7 +208,9 @@ public class MatchJPanel extends JPanel {
             student.setSt_id("2017141463145");
             student.setSt_description("2004年优秀大学生代表");
             
-            studentJPanel.add(new MatchInfoJpanel(student, MainWindow.initialWidth*2/3, MainWindow.initialHeight /6));
+            addMatchInfo(student);
+            
+            //studentJPanel.add(new MatchInfoJpanel(student, MainWindow.initialWidth*2/3, MainWindow.initialHeight /6));
             
             scrollPane1 = new JScrollPane();
             scrollPane1.setViewportView(studentJPanel);
@@ -172,19 +232,4 @@ public class MatchJPanel extends JPanel {
             
             add(describeJPanel, BorderLayout.CENTER);
         }
-        
-        
-        
-        
-  
-    
-    public static void main(String ... args) {
-        JFrame frame = new JFrame();
-        MatchJPanel matchJPanel = new MatchJPanel();
-        frame.setContentPane(matchJPanel);
-        frame.setBackground(Color.white);
-        frame.setBounds(0, 0, 1280, 590);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
 }
