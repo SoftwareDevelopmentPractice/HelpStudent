@@ -15,8 +15,7 @@ import com.fhlxc.mysql.ConnectMySQL;
 public class ModifyOwnInfo {
      public int modify(String id, String pwd, String mail, String aim, String description) {
         String sql = "update student set st_pwd = ? , st_mail = ? , st_aim = ? , st_description = ? where st_id = " + id + ";";
-               
-        System.out.println(pwd);
+          
         if(pwd.equals("") || mail.equals("") || aim.equals("") || description.equals("") ) {
             return 0;
         }

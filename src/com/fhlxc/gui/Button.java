@@ -131,4 +131,8 @@ public class Button extends JButton {
         g.drawString(text, (this.getWidth() - strWidth) / 2, (this.getHeight() - strHeight) / 2 + metrics.getAscent());
     }
     
+    public String getxText() {
+        return text;
+    }
+    
 }

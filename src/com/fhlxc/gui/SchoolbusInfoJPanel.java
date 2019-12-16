@@ -2,7 +2,6 @@ package com.fhlxc.gui;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.text.SimpleDateFormat;
 
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -70,7 +69,7 @@ public class SchoolbusInfoJPanel extends JPanel {
     private void setSb_time() {
         sb_time = new Label();
         
-        sb_time.setxText("发车时间：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(schoolbus.getSb_time().getTime()));
+        sb_time.setxText("发车时间：" + schoolbus.getSb_time());
         setLable(sb_time);
         
         add(sb_time);

@@ -1,6 +1,6 @@
 package com.fhlxc.entity;
 
-import java.util.Calendar;
+
 
 /**
 * @author Liu Haotian
@@ -11,7 +11,7 @@ import java.util.Calendar;
 
 public class Schoolbus {
        private String sb_id;
-       private Calendar sb_time;
+       private String sb_time;
        private String sb_arrival;
        private boolean sb_config;
     public String getSb_id() {
@@ -20,10 +20,10 @@ public class Schoolbus {
     public void setSb_id(String sb_id) {
         this.sb_id = sb_id;
     }
-    public Calendar getSb_time() {
+    public String getSb_time() {
         return sb_time;
     }
-    public void setSb_time(Calendar sb_time) {
+    public void setSb_time(String sb_time) {
         this.sb_time = sb_time;
     }
     public String getSb_arrival() {
