@@ -63,6 +63,7 @@ public class ButtonJPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Button b = (Button) e.getSource();
                 clicked(b);
+                //TODO 添加公告内容
                 if (curr == null || curr == b) {
                     contentJPanel.showJPanel(ContentJPanel.NOTICEJPANEL);
                 }
@@ -131,6 +132,7 @@ public class ButtonJPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Button b = (Button) e.getSource();
                 clicked(b);
+                //TODO 添加伙伴信内容
                 contentJPanel.showJPanel(ContentJPanel.FRIENDJPANEL);
             }
         });
