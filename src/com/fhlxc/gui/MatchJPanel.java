@@ -2,11 +2,14 @@ package com.fhlxc.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,6 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import com.fhlxc.backend.Match;
+import com.fhlxc.data.Data;
 import com.fhlxc.entity.Student;
 
 
@@ -38,8 +43,11 @@ public class MatchJPanel extends JPanel {
     
     private MatchInfoJpanel currMatchInfoJPanel;
     
+    private Match match;
+    
     public MatchJPanel(JFrame frame) {
         JButton = new Button();
+        match = new Match();
         JPanel student = new JPanel();
 
         JPanel j2 = new JPanel();
@@ -83,6 +91,25 @@ public class MatchJPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO something 匹配找结果
+                String aim = tfMatchj2.getText();
+                String id = Data.student.getSt_id();
+                
+                if (aim.equals("输入想要做的目标")) {
+                    MainWindow.dialog.setDialog("未填写目标", MainWindow.ERRORIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    return;
+                }
+                
+                frame.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                studentJPanel.removeAll();
+                
+                ArrayList<Student> students = match.match(id, aim);
+                
+                for (Student student: students) {
+                    addMatchInfo(student);
+                }
+                studentJPanel.updateUI();
+                frame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
         j2.add(JButton);
@@ -169,6 +196,13 @@ public class MatchJPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO something 添加好友
+                String st_id = Data.student.getSt_id();
+                String pa_id = matchInfoJPanel.getStudent().getSt_id();
+                match.addPartner(st_id, pa_id);
+                MainWindow.dialog.setDialog("添加成功", MainWindow.SUCCESSIMAGE);
+                MainWindow.dialog.setVisible(true);
+                matchInfoJPanel.getMatch().setxText("已添加");
+                matchInfoJPanel.getMatch().setEnabled(false);
             }
         });
         
@@ -181,14 +215,6 @@ public class MatchJPanel extends JPanel {
             
             studentJPanel.setOpaque(false);
             studentJPanel.setLayout(new VFlowLayout(VFlowLayout.TOP, 0, 0, false, false));
-            
-            /*for (int i = 1; i < 20; i++) {
-                Student student = new Student();
-                student.setSt_id("2017141463145");
-                student.setSt_description("2004年优秀大学生代表");
-                
-                addMatchInfo(student);
-            }*/
             
             scrollPane1 = new JScrollPane();
             scrollPane1.setViewportView(studentJPanel);

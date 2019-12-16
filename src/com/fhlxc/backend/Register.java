@@ -23,7 +23,7 @@ public class Register {
     public static final int SUCCESS = 0;
     
     
-    public int register(String account, String mail, String pwd) {
+    public int register(String account, String mail, String pwd, String name) {
         String regEx1 = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
         
         
@@ -53,13 +53,14 @@ public class Register {
             e.printStackTrace();
         }
         
-        String sql = "insert into student(st_id, st_mail, st_pwd) value (?, ?, ?);";
+        String sql = "insert into student(st_id, st_mail, st_pwd, st_name) value (?, ?, ?, ?);";
         ConnectMySQL connectMySQL = new ConnectMySQL();
         try {
             PreparedStatement preparedStatement = connectMySQL.getConnection().prepareStatement(sql);
             preparedStatement.setString(1, account);
             preparedStatement.setString(2, mail);
             preparedStatement.setString(3, pwd);
+            preparedStatement.setString(4, name);
             preparedStatement.execute();
             preparedStatement.close();
             connectMySQL.close();
