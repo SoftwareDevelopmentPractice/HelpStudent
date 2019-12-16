@@ -26,7 +26,7 @@ import com.fhlxc.entity.Notice;
 
 @SuppressWarnings("serial")
 public class NoticeJpanel extends JPanel {
-    private JPanel infoJPanel;
+    public JPanel infoJPanel;
     private JScrollPane scrollPane;
     private JScrollPane scroPane;
     private JTextArea textArea;

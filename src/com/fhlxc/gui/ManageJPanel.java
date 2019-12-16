@@ -137,6 +137,7 @@ public class ManageJPanel extends JPanel {
                 dialog.setTitle("校车提醒");
                 SchoolbusManageJPanel schoolbusManageJPanel = new SchoolbusManageJPanel(dialog, true);
                 //TODO something 查询数据库，将结果添加
+               // schoolbusManageJPanel.addSchoolbusInfo(schoolbus);
                 dialog.setContentPane(schoolbusManageJPanel);
                 dialog.setVisible(true);
             }
