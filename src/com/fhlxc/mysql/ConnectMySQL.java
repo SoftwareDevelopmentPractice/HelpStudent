@@ -26,7 +26,7 @@ public class ConnectMySQL {
     public boolean connect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://" + InetAddress.getByName("forever-happy").getHostAddress() + ":3306/softwaredevelopment?useSSL=false&serverTimezone=GMT"
+            conn = DriverManager.getConnection("jdbc:mysql://" + InetAddress.getByName("10.132.165.146").getHostAddress() + ":3306/softwaredevelopment?useSSL=false&serverTimezone=GMT"
                     , "root", "zxc123__");
             return true;
         } catch (Exception e) {
