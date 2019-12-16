@@ -6,8 +6,6 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -15,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import com.fhlxc.backend.Register;
 
 /**
 * @author Xingchao Long
@@ -84,9 +84,10 @@ public class RegisterJPanel extends JPanel {
         
         mailTextField.setOpaque(false);
         mailTextField.setBorder(null);
-        mailTextField.setForeground(MainWindow.BUTTONFONTCOLOR);
-        mailTextField.setCaretColor(MainWindow.BUTTONFONTCOLOR);
+        mailTextField.setForeground(MainWindow.LABELFONTCOLOR);
+        mailTextField.setCaretColor(MainWindow.LABELFONTCOLOR);
         mailTextField.setFont(MainWindow.TEXTFONT);
+        mailTextField.addFocusListener(new JTextFieldHintListener(mailTextField, "输入邮箱，格式为xxx@xxx.com"));
         
         mailPanel.setLayout(new BorderLayout());
         mailPanel.setOpaque(false);
@@ -101,9 +102,10 @@ public class RegisterJPanel extends JPanel {
         
         accountTextField.setOpaque(false);
         accountTextField.setBorder(null);
-        accountTextField.setForeground(MainWindow.BUTTONFONTCOLOR);
-        accountTextField.setCaretColor(MainWindow.BUTTONFONTCOLOR);
+        accountTextField.setForeground(MainWindow.LABELFONTCOLOR);
+        accountTextField.setCaretColor(MainWindow.LABELFONTCOLOR);
         accountTextField.setFont(MainWindow.TEXTFONT);
+        accountTextField.addFocusListener(new JTextFieldHintListener(accountTextField, "输入账号,少于16字符"));
         
         accountPanel.setLayout(new BorderLayout());
         accountPanel.setOpaque(false);
@@ -118,8 +120,8 @@ public class RegisterJPanel extends JPanel {
         
         pwdPasswordField.setOpaque(false);
         pwdPasswordField.setBorder(null);
-        pwdPasswordField.setForeground(MainWindow.BUTTONFONTCOLOR);
-        pwdPasswordField.setCaretColor(MainWindow.BUTTONFONTCOLOR);
+        pwdPasswordField.setForeground(MainWindow.LABELFONTCOLOR);
+        pwdPasswordField.setCaretColor(MainWindow.LABELFONTCOLOR);
         pwdPasswordField.setFont(MainWindow.TEXTFONT);
         
         pwdPanel.setLayout(new BorderLayout());
@@ -160,7 +162,33 @@ public class RegisterJPanel extends JPanel {
                 account = accountTextField.getText();
                 mail = mailTextField.getText();
                 //TODO something 成功之后下面这句代码，并接上提示框
-                registerDialog.setVisible(false);
+                Register register = new Register();
+                int state = register.register(account, mail, pwd);
+                switch (state) {
+                case Register.SUCCESS: {
+                    MainWindow.dialog.setDialog("注册成功", MainWindow.SUCCESSIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    registerDialog.setVisible(false);
+                    break;
+                }
+                case Register.MAILERROR: {
+                    MainWindow.dialog.setDialog("邮箱格式错误", MainWindow.ERRORIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    break;
+                }
+                case Register.ACCOUNTERROR1: {
+                    MainWindow.dialog.setDialog("用户名过长", MainWindow.ERRORIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    break;
+                }
+                case Register.ACCOUNTERROR2: {
+                    MainWindow.dialog.setDialog("用户已经注册", MainWindow.ERRORIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    break;
+                }
+                default:
+                    throw new IllegalArgumentException("Unexpected value: " + state);
+                }
             }
         });
         

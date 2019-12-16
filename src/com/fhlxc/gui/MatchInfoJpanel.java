@@ -25,6 +25,8 @@ import com.fhlxc.entity.Student;
         private Label st_aim;
         private Label st_description;
         
+        private Button match;
+        
         private JTextArea textArea;
         private JScrollPane scrollPane;
         
@@ -45,6 +47,7 @@ import com.fhlxc.entity.Student;
             setSt_name();
             setSt_aim();
             setSt_description();
+            setMatch();
         }
         
         private void setLable(Label label) {
@@ -111,8 +114,23 @@ import com.fhlxc.entity.Student;
             scrollPane.getHorizontalScrollBar().setUI(new ScrollBarUI(new ImageIcon(MainWindow.SCROLLLEFTIMAGE).getImage(), new ImageIcon(MainWindow.SCROLLRIGHTIMAGE).getImage()));
             scrollPane.getHorizontalScrollBar().setUnitIncrement(MainWindow.SCROLLINCREMENT);
             scrollPane.getViewport().setOpaque(false);
-            scrollPane.setPreferredSize(new Dimension(width, height - 110));
+            scrollPane.setPreferredSize(new Dimension(width, height - 135));
             add(scrollPane);
+        }
+        
+        private void setMatch() {
+            match = new Button();
+            
+            match.setFont(MainWindow.LABELFONT);
+            match.setFontColor(MainWindow.LABELFONTCOLOR);
+            match.setBorderColor(MainWindow.BORDERCOLOR);
+            match.setOpaque(false);
+            match.setColor(MainWindow.BUTTONCOLOR);
+            match.setHoverColor(MainWindow.BUTTONHOVERCOLOR);
+            match.setPressColor(MainWindow.BUTTONPRESSCOLOR);
+            match.setxText("添加");
+            match.setPreferredSize(new Dimension(width / 4, 25));
+            add(match);
         }
     
     public Label getSt_id() {
@@ -133,5 +151,13 @@ import com.fhlxc.entity.Student;
 
     public JTextArea getTextArea() {
         return textArea;
+    }
+    
+    public Student getStudent() {
+        return student;
+    }
+    
+    public Button getMatch() {
+        return match;
     }
 }

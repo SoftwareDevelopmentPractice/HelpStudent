@@ -19,10 +19,14 @@ public class ConnectMySQL {
         return conn;
     }
     
+    public ConnectMySQL() {
+        connect();
+    }
+    
     public boolean connect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://" + InetAddress.getByName("forever-happy").getHostAddress() + ":3306/taskshuntingsystem?useSSL=false&serverTimezone=GMT"
+            conn = DriverManager.getConnection("jdbc:mysql://" + InetAddress.getByName("forever-happy").getHostAddress() + ":3306/softwaredevelopment?useSSL=false&serverTimezone=GMT"
                     , "root", "zxc123__");
             return true;
         } catch (Exception e) {

@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -17,7 +16,6 @@ import javax.swing.border.LineBorder;
 
 import com.fhlxc.data.Data;
 import com.fhlxc.entity.Student;
-import com.fhlxc.entity.Task;
 
 /**
 * @author Xingchao Long
