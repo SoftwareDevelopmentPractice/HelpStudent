@@ -27,7 +27,6 @@ public class PlanInfoJPanel extends JPanel {
     private Label pl_during;
     private Label pl_content;
     
-    private Button addPlan;
     private Button modifyPlan;
     private Button deletePlan;
     private Button config;
@@ -49,6 +48,14 @@ public class PlanInfoJPanel extends JPanel {
         if (modify) {
             setButtonJPanel();
         }
+    }
+    
+    public void setxText(Plan plan) {
+        this.plan = plan;
+        pl_during.setxText("持续时间：" + plan.getPl_during() + "小时");
+        pl_type.setxText("计划类型：" + plan.getPl_type());
+        pl_title.setxText("标题：" + plan.getPl_title());
+        pl_time.setxText("时间：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(plan.getPl_time().getTime()));
     }
     
     private void setLable(Label label) {
@@ -109,15 +116,10 @@ public class PlanInfoJPanel extends JPanel {
         modifyPlan = new Button();
         deletePlan = new Button();
         config = new Button();
-        addPlan = new Button();
         
         buttonJPanel.setOpaque(false);
         buttonJPanel.setBorder(new EmptyBorder(0, 20, 0, 50));
-        buttonJPanel.setLayout(new GridLayout(1, 4, 20, 0));
-        
-        addPlan.setxText("添加计划");
-        setButton(addPlan);
-        buttonJPanel.add(addPlan);
+        buttonJPanel.setLayout(new GridLayout(1, 3, 20, 0));
         
         modifyPlan.setxText("修改计划");
         setButton(modifyPlan);
@@ -172,9 +174,5 @@ public class PlanInfoJPanel extends JPanel {
 
     public Label getPl_content() {
         return pl_content;
-    }
-
-    public Button getAddPlan() {
-        return addPlan;
     }
 }

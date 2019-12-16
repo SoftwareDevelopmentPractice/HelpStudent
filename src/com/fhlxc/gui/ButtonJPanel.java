@@ -67,6 +67,7 @@ public class ButtonJPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Button b = (Button) e.getSource();
                 clicked(b);
+
                 //TODO 添加公告内容
                 ShowNotice showNotice = new ShowNotice();
                 MainWindow.noticeJpanel.infoJPanel.removeAll();
@@ -75,6 +76,7 @@ public class ButtonJPanel extends JPanel {
                     MainWindow.noticeJpanel.addNoticeInfo(notice);
                 }
                 MainWindow.noticeJpanel.updateUI();
+
                 if (curr == null || curr == b) {
                     contentJPanel.showJPanel(ContentJPanel.NOTICEJPANEL);
                 }
