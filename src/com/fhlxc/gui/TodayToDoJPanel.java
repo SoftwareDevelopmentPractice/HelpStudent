@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -17,6 +18,9 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import com.fhlxc.backend.AddTask;
+import com.fhlxc.backend.Checkplan;
+import com.fhlxc.data.Data;
 import com.fhlxc.entity.Plan;
 import com.fhlxc.entity.Task;
 
@@ -45,12 +49,17 @@ public class TodayToDoJPanel extends JPanel {
     
     public TodayToDoJPanel(JDialog dialog) {
         this.dialog = dialog;
-        
+       
+        String st_id= Data.student.getSt_id();
         setOpaque(false);
         setBorder(new EmptyBorder(150, 200, 150, 200));
         setLayout(new GridLayout(1, 2, 200, 200));
         setTaskJPannel();
         setPlanJPanel();
+        ArrayList<Task> tasks = new Checkplan().find(st_id);
+        for (Task task: tasks) {
+            addTaskInfo(task);
+        }
     }
     
     private void setTaskJPannel() {

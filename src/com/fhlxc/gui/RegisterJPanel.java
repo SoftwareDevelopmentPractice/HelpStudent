@@ -187,6 +187,7 @@ public class RegisterJPanel extends JPanel {
                 account = accountTextField.getText();
                 mail = mailTextField.getText();
                 name = nameTextField.getText();
+
                 //TODO something 成功之后下面这句代码，并接上提示框
                 Register register = new Register();
                 int state = register.register(account, mail, pwd, name);
