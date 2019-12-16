@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import com.fhlxc.entity.Plan;
+import com.fhlxc.entity.Task;
 import com.fhlxc.mysql.ConnectMySQL;
 
 /**
@@ -131,5 +132,54 @@ public class PlanManage {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public ArrayList<Plan> todayplan(String st_id) {
+        ArrayList<Plan> plans = new ArrayList<>();
+        String sql = "select *from plan where st_id ="+st_id+";" ;
+        ConnectMySQL connectMySQL = new ConnectMySQL();
+        try {
+            Statement statement = connectMySQL.getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                Plan plan = new Plan();
+                String str = resultSet.getString("pl_time");
+                SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                java.util.Date date = null;
+                try {
+                    date = sdf.parse(str);
+                } catch (ParseException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
+                
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                
+                Calendar cale = null;
+                cale = Calendar.getInstance();
+                int yearN = cale.get(Calendar.YEAR);
+                int monthN = cale.get(Calendar.MONTH) ;
+                int dayN = cale.get(Calendar.DATE);
+                if(year==yearN && month==monthN && day==dayN) {
+                plan.setP_id(resultSet.getInt("p_id"));
+                plan.setPl_during(resultSet.getInt("pl_during"));
+                plan.setPl_title(resultSet.getString("pl_title"));
+                plan.setPl_type(resultSet.getString("pl_type"));
+                plan.setPl_content(resultSet.getString("pl_content"));
+                plan.setPl_time(calendar);        
+                plans.add(plan);
+                }
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        
+        return plans;
     }
 }

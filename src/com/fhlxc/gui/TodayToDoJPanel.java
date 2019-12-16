@@ -20,6 +20,7 @@ import javax.swing.border.LineBorder;
 
 import com.fhlxc.backend.AddTask;
 import com.fhlxc.backend.Checkplan;
+import com.fhlxc.backend.PlanManage;
 import com.fhlxc.data.Data;
 import com.fhlxc.entity.Plan;
 import com.fhlxc.entity.Task;
@@ -59,6 +60,10 @@ public class TodayToDoJPanel extends JPanel {
         ArrayList<Task> tasks = new Checkplan().find(st_id);
         for (Task task: tasks) {
             addTaskInfo(task);
+        }
+        ArrayList<Plan> plans = new PlanManage().todayplan(st_id);
+        for (Plan plan : plans) {
+            addPlanInfo(plan);;
         }
     }
     
