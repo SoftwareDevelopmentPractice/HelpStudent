@@ -157,10 +157,6 @@ public class RegisterJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                char[] values = pwdPasswordField.getPassword();
-                pwd = new String(values);
-                account = accountTextField.getText();
-                mail = mailTextField.getText();
                 //TODO something 成功之后下面这句代码，并接上提示框
                 Register register = new Register();
                 int state = register.register(account, mail, pwd);

@@ -10,17 +10,18 @@ import java.util.Calendar;
 */
 
 public class Task {
-     private String t_id;
+     private int t_id;
+     private String t_stime;
      private String t_title;
      private String t_content;
      private Calendar t_time;
      private int t_during;
      private boolean st_config;
     
-    public String getT_id() {
+    public int getT_id() {
         return t_id;
     }
-    public void setT_id(String t_id) {
+    public void setT_id(int t_id) {
         this.t_id = t_id;
     }
     public String getT_title() {
@@ -38,14 +39,15 @@ public class Task {
     public Calendar getT_time() {
         return t_time;
     }
+ 
     public void setT_time(Calendar t_time) {
         this.t_time = t_time;
     }
-    public int getT_during() {
+    public int  getT_during() {
         return t_during;
     }
-    public void setT_during(int t_during) {
-        this.t_during = t_during;
+    public void setT_during(int string) {
+        this.t_during = string;
     }
     public boolean getSt_config() {
         return st_config;

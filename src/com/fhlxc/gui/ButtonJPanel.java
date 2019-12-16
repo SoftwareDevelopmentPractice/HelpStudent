@@ -63,6 +63,7 @@ public class ButtonJPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Button b = (Button) e.getSource();
                 clicked(b);
+                //TODO 
                 if (curr == null || curr == b) {
                     contentJPanel.showJPanel(ContentJPanel.NOTICEJPANEL);
                 }
