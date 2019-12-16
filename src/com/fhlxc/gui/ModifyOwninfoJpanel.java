@@ -106,8 +106,7 @@ public class ModifyOwninfoJpanel extends JPanel{
         setLabel(pwd);
 
         setTextField(pwdField);
-        pwdField.addFocusListener(new JTextFieldHintListener(pwdField, "******"));
-        
+            
         pwdJPanel.add(pwd, BorderLayout.WEST);
         pwdJPanel.add(pwdField, BorderLayout.CENTER);
         
@@ -206,7 +205,7 @@ public class ModifyOwninfoJpanel extends JPanel{
         return description;
     }
 
-    public JTextField getpwdField() {
+    public JPasswordField getpwdField() {
         return pwdField;
     }
 
