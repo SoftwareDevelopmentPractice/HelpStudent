@@ -35,9 +35,11 @@ public class RegisterJPanel extends JPanel {
     private Label accountLabel;
     private Label pwdLabel;
     private Label mailLabel;
+    private Label nameLabel;
     private JTextField accountTextField;
     private JTextField mailTextField;
     private JPasswordField pwdPasswordField;
+    private JTextField nameTextField;
     
     private Button cancelButton;
     private Button registerButton;
@@ -46,6 +48,7 @@ public class RegisterJPanel extends JPanel {
     private String mail;
     private String account;
     private String pwd;
+    private String name;
     
     public RegisterJPanel(JDialog dialog) {
         registerDialog = dialog;
@@ -64,16 +67,19 @@ public class RegisterJPanel extends JPanel {
         upPanel = new JPanel();
         mailLabel = new Label();
         accountLabel = new Label();
+        nameLabel = new Label();
         pwdLabel = new Label();
         mailTextField = new JTextField();
         accountTextField = new JTextField();
         pwdPasswordField = new JPasswordField();
+        nameTextField = new JTextField();
         
         JPanel mailPanel = new JPanel();
         JPanel accountPanel = new JPanel();
         JPanel pwdPanel = new JPanel();
+        JPanel namePanel = new JPanel();
         
-        upPanel.setLayout(new GridLayout(3, 1, 20, 0));
+        upPanel.setLayout(new GridLayout(4, 1, 20, 0));
         upPanel.setOpaque(false);
         
         mailLabel.setOpaque(false);
@@ -112,6 +118,24 @@ public class RegisterJPanel extends JPanel {
         accountPanel.add(accountLabel, BorderLayout.WEST);
         accountPanel.add(accountTextField, BorderLayout.CENTER);
         
+        nameLabel.setOpaque(false);
+        nameLabel.setFontColor(MainWindow.BUTTONFONTCOLOR);
+        nameLabel.setFont(MainWindow.TEXTFONT);
+        nameLabel.setxText("姓名：");
+        nameLabel.setPreferredSize(new Dimension(100, 0));
+        
+        nameTextField.setOpaque(false);
+        nameTextField.setBorder(null);
+        nameTextField.setForeground(MainWindow.LABELFONTCOLOR);
+        nameTextField.setCaretColor(MainWindow.LABELFONTCOLOR);
+        nameTextField.setFont(MainWindow.TEXTFONT);
+        nameTextField.addFocusListener(new JTextFieldHintListener(nameTextField, "输入姓名，之后不可更改"));
+        
+        namePanel.setLayout(new BorderLayout());
+        namePanel.setOpaque(false);
+        namePanel.add(nameLabel, BorderLayout.WEST);
+        namePanel.add(nameTextField, BorderLayout.CENTER);
+        
         pwdLabel.setOpaque(false);
         pwdLabel.setFontColor(MainWindow.BUTTONFONTCOLOR);
         pwdLabel.setFont(MainWindow.TEXTFONT);
@@ -131,6 +155,7 @@ public class RegisterJPanel extends JPanel {
         
         upPanel.add(mailPanel);
         upPanel.add(accountPanel);
+        upPanel.add(namePanel);
         upPanel.add(pwdPanel);
         
         add(upPanel, BorderLayout.CENTER);
@@ -157,9 +182,15 @@ public class RegisterJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+                char[] values = pwdPasswordField.getPassword();
+                pwd = new String(values);
+                account = accountTextField.getText();
+                mail = mailTextField.getText();
+                name = nameTextField.getText();
+
                 //TODO something 成功之后下面这句代码，并接上提示框
                 Register register = new Register();
-                int state = register.register(account, mail, pwd);
+                int state = register.register(account, mail, pwd, name);
                 switch (state) {
                 case Register.SUCCESS: {
                     MainWindow.dialog.setDialog("注册成功", MainWindow.SUCCESSIMAGE);
