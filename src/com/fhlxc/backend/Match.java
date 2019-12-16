@@ -18,7 +18,7 @@ import com.fhlxc.mysql.ConnectMySQL;
 public class Match {
     public ArrayList<Student> match(String id, String aim) {
         ArrayList<Student> students = new ArrayList<>();
-        String sql = "select * from student where st_id <> ? and st_aim like '%" + aim + "%';";
+        String sql = "select * from student where st_id <> ? and st_aim like '%" + aim + "%' and st_id not in (select pa_id from partner where st_id = "+ id +");";
         
         ConnectMySQL connectMySQL = new ConnectMySQL();
         
