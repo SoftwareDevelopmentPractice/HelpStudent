@@ -19,6 +19,10 @@ public class ShowNotice {
     ConnectMySQL connectMySQL = new ConnectMySQL();
     try {
         Statement statement = connectMySQL.getConnection().createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        if(resultSet.next()) {
+            int id = resultSet.getInt("");
+        }
     } catch (Exception e) {
         // TODO: handle exception
     }
