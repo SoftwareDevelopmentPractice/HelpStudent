@@ -34,6 +34,9 @@ public class Match {
                 student.setSt_description(resultSet.getString("st_description"));
                 students.add(student);
             }
+            resultSet.close();
+            preparedStatement.close();
+            connectMySQL.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -42,6 +45,18 @@ public class Match {
     }
     
     public void addPartner(String st_id, String pa_id) {
+        String sql = "insert into partner (st_id, pa_id) value (?, ?)";
         
+        ConnectMySQL connectMySQL = new ConnectMySQL();
+        try {
+            PreparedStatement preparedStatement = connectMySQL.getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, st_id);
+            preparedStatement.setString(2, pa_id);
+            preparedStatement.execute();
+            preparedStatement.close();
+            connectMySQL.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
