@@ -1,6 +1,7 @@
 package com.fhlxc.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -13,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import com.fhlxc.backend.ForgetPWD;
 
 /**
 * @author Xingchao Long
@@ -45,6 +48,8 @@ public class ForgetJPanel extends JPanel {
     private String account;
     private String vcode;
     private String pwd;
+    
+    ForgetPWD forgetPWD;
     
     public ForgetJPanel(JDialog dialog) {
         forgetDialog = dialog;
@@ -84,9 +89,10 @@ public class ForgetJPanel extends JPanel {
         
         accountTextField.setOpaque(false);
         accountTextField.setBorder(null);
-        accountTextField.setForeground(MainWindow.BUTTONFONTCOLOR);
-        accountTextField.setCaretColor(MainWindow.BUTTONFONTCOLOR);
+        accountTextField.setForeground(MainWindow.LABELFONTCOLOR);
+        accountTextField.setCaretColor(MainWindow.LABELFONTCOLOR);
         accountTextField.setFont(MainWindow.TEXTFONT);
+        accountTextField.addFocusListener(new JTextFieldHintListener(accountTextField, "输入账号"));
         
         accountPanel.setLayout(new BorderLayout());
         accountPanel.setOpaque(false);
@@ -101,9 +107,10 @@ public class ForgetJPanel extends JPanel {
         
         vcodeTextField.setOpaque(false);
         vcodeTextField.setBorder(null);
-        vcodeTextField.setForeground(MainWindow.BUTTONFONTCOLOR);
-        vcodeTextField.setCaretColor(MainWindow.BUTTONFONTCOLOR);
+        vcodeTextField.setForeground(MainWindow.LABELFONTCOLOR);
+        vcodeTextField.setCaretColor(MainWindow.LABELFONTCOLOR);
         vcodeTextField.setFont(MainWindow.TEXTFONT);
+        vcodeTextField.addFocusListener(new JTextFieldHintListener(vcodeTextField, "输入验证码"));
         
         sendButton.setOpaque(false);
         sendButton.setxText("发送");
@@ -119,6 +126,42 @@ public class ForgetJPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO something 发送邮件，并使按钮几秒内不允许在点击
+                forgetPWD = new ForgetPWD();
+                account = accountTextField.getText();
+                forgetDialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                int state = forgetPWD.sendVcode(account);
+                forgetDialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                switch (state) {
+                case ForgetPWD.ACCOUNTERROR: {
+                    MainWindow.dialog.setDialog("账户错误或该账户未填写邮箱信息", MainWindow.ERRORIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    return;
+                }
+                case ForgetPWD.SUCCESS: {
+                    MainWindow.dialog.setDialog("已发送邮件，若未收到请稍后再发送", MainWindow.SUCCESSIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    break;
+                }
+                case ForgetPWD.PWDERROR: {
+                    MainWindow.dialog.setDialog("密码未填写", MainWindow.ERRORIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    break;
+                }
+                default:
+                    throw new IllegalArgumentException("Unexpected value: " + state);
+                }
+                sendButton.setEnabled(false);
+                new Thread() {
+                    public void run() {
+                        try {
+                            Thread.sleep(60000);
+                            sendButton.setEnabled(true);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }.start();
+                modifyPWDButton.setEnabled(true);
             }
         });
         
@@ -169,16 +212,36 @@ public class ForgetJPanel extends JPanel {
         modifyPWDButton.setColor(MainWindow.BUTTONCOLOR);
         modifyPWDButton.setPressColor(MainWindow.BUTTONPRESSCOLOR);
         modifyPWDButton.setBorderColor(MainWindow.BORDERCOLOR);
+        modifyPWDButton.setEnabled(false);
         modifyPWDButton.addActionListener(new ActionListener() {
             
             @Override
             public void actionPerformed(ActionEvent e) {
                 char[] values = pwdPasswordField.getPassword();
                 pwd = new String(values);
-                account = accountTextField.getText();
                 vcode = vcodeTextField.getText();
                 //TODO something 显示修改成功对话框（Mainwindow里的对话框），成功修改后下面这句代码
-                forgetDialog.setVisible(false);
+                int state = forgetPWD.modifyPWD(vcode, pwd);
+                switch (state) {
+                case ForgetPWD.VCODEERROR: {
+                    MainWindow.dialog.setDialog("验证码错误，请重新填写", MainWindow.ERRORIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    break;
+                }
+                case ForgetPWD.SUCCESS: {
+                    MainWindow.dialog.setDialog("修改成功", MainWindow.SUCCESSIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    forgetDialog.setVisible(false);
+                    break;
+                }
+                case ForgetPWD.PWDERROR: {
+                    MainWindow.dialog.setDialog("密码未填写", MainWindow.ERRORIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    break;
+                }
+                default:
+                    throw new IllegalArgumentException("Unexpected value: " + state);
+                }
             }
         });
         
