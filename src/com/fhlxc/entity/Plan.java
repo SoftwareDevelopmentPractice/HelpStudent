@@ -15,10 +15,19 @@ public class Plan {
     private String pl_content;
     private Calendar pl_time;
     private int pl_during;
+    private int p_id;
     private boolean pl_config;
 
     public String getPl_title() {
         return pl_title;
+    }
+
+    public int getP_id() {
+        return p_id;
+    }
+
+    public void setP_id(int p_id) {
+        this.p_id = p_id;
     }
 
     public void setPl_title(String pl_title) {
