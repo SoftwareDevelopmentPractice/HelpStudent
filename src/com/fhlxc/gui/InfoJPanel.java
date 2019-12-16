@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -16,7 +17,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import com.fhlxc.backend.ModifyOwnInfo;
+import com.fhlxc.backend.ShowSchoolBus;
 import com.fhlxc.data.Data;
+import com.fhlxc.entity.Schoolbus;
 import com.fhlxc.entity.Student;
 
 /**
@@ -102,6 +105,7 @@ public class InfoJPanel extends JPanel {
                 JDialog dialog = new JDialog();
                 setDialog(dialog);
                 dialog.setTitle("校车时刻表");
+                
                 SchoolbusManageJPanel schoolbusManageJPanel = new SchoolbusManageJPanel(dialog, false);
                 dialog.setContentPane(schoolbusManageJPanel);
                 dialog.setVisible(true);
@@ -138,7 +142,7 @@ public class InfoJPanel extends JPanel {
                 dialog.setTitle("修改个人信息");
                 ModifyOwninfoJpanel modifyOwninfoJpanel = new ModifyOwninfoJpanel();
                 Student student = Data.student;
-
+               
                 modifyOwninfoJpanel.getpwdField().setText(student.getSt_pwd());
                 modifyOwninfoJpanel.getmailField().setText(student.getSt_mail());
                 modifyOwninfoJpanel.getaimField().setText(student.getSt_aim());

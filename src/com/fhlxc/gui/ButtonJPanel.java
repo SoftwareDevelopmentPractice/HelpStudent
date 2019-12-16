@@ -3,8 +3,12 @@ package com.fhlxc.gui;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
+
+import com.fhlxc.backend.ShowNotice;
+import com.fhlxc.entity.Notice;
 
 /**
 * @author Xingchao Long
@@ -63,7 +67,16 @@ public class ButtonJPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Button b = (Button) e.getSource();
                 clicked(b);
-              
+
+                //TODO 添加公告内容
+                ShowNotice showNotice = new ShowNotice();
+                MainWindow.noticeJpanel.infoJPanel.removeAll();
+                ArrayList<Notice> notices = showNotice.showinfo();
+                for (Notice notice: notices) {
+                    MainWindow.noticeJpanel.addNoticeInfo(notice);
+                }
+                MainWindow.noticeJpanel.updateUI();
+
                 if (curr == null || curr == b) {
                     contentJPanel.showJPanel(ContentJPanel.NOTICEJPANEL);
                 }
