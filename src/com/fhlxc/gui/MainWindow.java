@@ -59,6 +59,9 @@ public class MainWindow extends JFrame {
     public static final int x = (screenWidth - initialWidth) / 2;
     public static final int y = (screenHeight - initialHeight) / 2;
     
+    public static PartnerJPanel partnerJPanel;
+    public static NoticeJpanel noticeJpanel;
+    
     public static Dialog dialog;
     
     private MyMainJPanel contentPane;
@@ -128,11 +131,14 @@ public class MainWindow extends JFrame {
         buttonJPanel.setPreferredSize(new Dimension(initialWidth, 83));
         
         JPanel panel = new JPanel();
+        partnerJPanel = new PartnerJPanel(this);
+        noticeJpanel = new NoticeJpanel(this);
+        
         panel.setOpaque(false);
         contentJPanel.addJPanel(panel, ContentJPanel.INITIAL);
         contentJPanel.addJPanel(new ManageJPanel(), ContentJPanel.MANAGEJPANEL);
-        contentJPanel.addJPanel(new PartnerJPanel(this), ContentJPanel.FRIENDJPANEL);
-        contentJPanel.addJPanel(new NoticeJpanel(this), ContentJPanel.NOTICEJPANEL);
+        contentJPanel.addJPanel(partnerJPanel, ContentJPanel.FRIENDJPANEL);
+        contentJPanel.addJPanel(noticeJpanel, ContentJPanel.NOTICEJPANEL);
         contentJPanel.addJPanel(new MatchJPanel(this), ContentJPanel.MATCHJPANEL);
         
         /*Student student = new Student();
