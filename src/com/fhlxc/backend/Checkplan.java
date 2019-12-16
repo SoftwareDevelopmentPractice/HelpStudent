@@ -52,7 +52,11 @@ public class Checkplan {
                 int monthN = cale.get(Calendar.MONTH) ;
                 int dayN = cale.get(Calendar.DATE);
                 if(year==yearN && month==monthN && day==dayN) {
-                task.setT_time(calendar);        
+                    task.setT_id(resultSet.getInt("t_id"));
+                    task.setT_during(resultSet.getInt("t_during"));
+                    task.setT_title(resultSet.getString("t_title"));
+                    task.setT_content(resultSet.getString("t_content"));
+                    task.setT_time(calendar);        
                 tasks.add(task);}
             }
         } catch (SQLException e) {
