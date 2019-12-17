@@ -6,6 +6,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -13,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import com.fhlxc.backend.ManageCourse;
+import com.fhlxc.data.Data;
 import com.fhlxc.entity.Course;
 
 /**
@@ -41,6 +46,12 @@ public class CourseManageJPanel extends JPanel {
         
         setButtonJPanel();
         setCourseJPanel();
+        
+        ArrayList<Course> courses = ManageCourse.loadCourse(Data.student.getSt_id());
+        ManageCourse.writeCourse(courses);
+        for (Course course: courses) {
+            addCourseInfoJPanel(course);
+        }
     }
     
     private void setButton(Button button) {
@@ -71,6 +82,43 @@ public class CourseManageJPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 dialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
                 //TODO 导入课表
+                MainWindow.dialog.setDialog("设置提醒输入true/false", MainWindow.WARNINGIMAGE);
+                MainWindow.dialog.setVisible(true);
+                Runtime runtime = Runtime.getRuntime();
+                File f = new File("course/course.csv");
+                Process process;
+                try {
+                    process = runtime.exec("C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\EXCEL.EXE " + f.getAbsolutePath());
+                    process.waitFor();
+                } catch (IOException | InterruptedException e1) {
+                    e1.printStackTrace();
+                    MainWindow.dialog.setDialog("找不到指定程序", MainWindow.ERRORIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                    return;
+                }
+                dialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                courseJPanel.removeAll();
+                ArrayList<Course> courses = ManageCourse.readCourse();
+                if (courses == null) {
+                    MainWindow.dialog.setDialog("格式错误", MainWindow.ERRORIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                    return;
+                }
+                if (!ManageCourse.modifyCourse(Data.student.getSt_id(), courses)) {
+                    MainWindow.dialog.setDialog("部分课程不存在，请联系管理员", MainWindow.ERRORIMAGE);
+                    MainWindow.dialog.setVisible(true);
+                    dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                    return;
+                }
+                courses = ManageCourse.loadCourse(Data.student.getSt_id());
+                for (Course course: courses) {
+                    addCourseInfoJPanel(course);
+                }
+                courseJPanel.updateUI();
+                MainWindow.dialog.setDialog("修改成功", MainWindow.SUCCESSIMAGE);
+                MainWindow.dialog.setVisible(true);
                 dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
@@ -85,6 +133,10 @@ public class CourseManageJPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 dialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
                 //TODO 清空课表信息
+                String st_id = Data.student.getSt_id();
+                ManageCourse.deleteAll(st_id);
+                courseJPanel.removeAll();
+                courseJPanel.updateUI();
                 dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
@@ -96,11 +148,30 @@ public class CourseManageJPanel extends JPanel {
     public void addCourseInfoJPanel(Course course) {
         CourseInfoJPanel courseInfoJPanel = new CourseInfoJPanel(course, MainWindow.initialWidth - MainWindow.initialWidth / 4 - 450, 135);
         
-        courseInfoJPanel.getC_config().addActionListener(new ActionListener() {
+        courseInfoJPanel.getConfig().addActionListener(new ActionListener() {
             
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO 设置提醒
+                String c_id = course.getC_id();
+                String st_id = Data.student.getSt_id();
+                int c_order = course.getC_order();
+                int c_config;
+                if (course.isC_config()) {
+                    course.setC_config(false);
+                    courseInfoJPanel.getConfig().setxText("设置提醒");
+                    c_config = 0;
+                } else {
+                    course.setC_config(true);
+                    courseInfoJPanel.getConfig().setxText("取消提醒");
+                    c_config = 1;
+                }
+                dialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                
+                ManageCourse.update(st_id, c_id, c_order, c_config);
+                courseInfoJPanel.setxText(course);
+                
+                dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
         
@@ -112,16 +183,6 @@ public class CourseManageJPanel extends JPanel {
         
         courseJPanel.setOpaque(false);
         courseJPanel.setLayout(new VFlowLayout(VFlowLayout.TOP, 0, 0, false, false));
-        
-        /*for (int i = 1; i < 20; i++) {
-            Course course = new Course();
-            course.setC_id("20183687783");
-            course.setC_name("wohaode ");
-            course.setC_time(Calendar.getInstance());
-            course.setC_place("江安德惠");
-            
-            addCourseInfoJPanel(course);
-        }*/
         
         scrollPane1 = new JScrollPane();
         scrollPane1.setViewportView(courseJPanel);

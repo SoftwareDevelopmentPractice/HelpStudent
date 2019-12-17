@@ -38,6 +38,7 @@ public class LogIn {
         }
         
         if (pwd1.equals(pwd)) {
+            student.setSt_pwd(pwd1);
             Data.student = student;
             return true;
         }

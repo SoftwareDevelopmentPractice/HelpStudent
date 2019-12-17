@@ -58,11 +58,6 @@ public class PartnerJPanel extends JPanel {
         friendJPanel.setOpaque(false);
         friendJPanel.setLayout(new VFlowLayout(VFlowLayout.TOP, 0, 0, false, false));
         
-        Student student = new Student();
-        student.setSt_id("2017141463049");
-        student.setSt_description(
-                "2018年参演电视剧《尼玛死了》");
-        addPartnerInfo(student);
         scrollPane1 = new JScrollPane();
         scrollPane1.setViewportView(friendJPanel);
         scrollPane1.setBorder(null);

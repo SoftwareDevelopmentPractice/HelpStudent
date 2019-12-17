@@ -61,6 +61,10 @@ public class TaskInfoJPanel extends JPanel {
         }
     }
     
+    public void setxText(Task task) {
+        this.task = task;
+    }
+    
     private void setLable(Label label) {
         label.setFont(MainWindow.LABELFONT);
         label.setFontColor(MainWindow.LABELFONTCOLOR);
