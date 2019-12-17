@@ -1,7 +1,5 @@
 package com.fhlxc.entity;
 
-import java.util.Calendar;
-
 /**
 * @author Liu Haotian
 * @date 2019/08/26 20:08:22
@@ -12,9 +10,16 @@ import java.util.Calendar;
 public class Course {
     private String c_id;
     private String c_name;
-    private Calendar c_time;
+    private String c_time;
     private String c_place;
     private boolean c_config;
+    private int c_order;
+    public int getC_order() {
+        return c_order;
+    }
+    public void setC_order(int c_order) {
+        this.c_order = c_order;
+    }
     public String getC_id() {
         return c_id;
     }
@@ -27,10 +32,10 @@ public class Course {
     public void setC_name(String c_name) {
         this.c_name = c_name;
     }
-    public Calendar getC_time() {
+    public String getC_time() {
         return c_time;
     }
-    public void setC_time(Calendar c_time) {
+    public void setC_time(String c_time) {
         this.c_time = c_time;
     }
     public String getC_place() {
