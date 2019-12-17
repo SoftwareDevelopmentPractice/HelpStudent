@@ -255,14 +255,13 @@ public class PlanManageJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                Button button = (Button) e.getSource();
+                /*Button button = (Button) e.getSource();
                 PlanInfoJPanel p = (PlanInfoJPanel) button.getParent().getParent();
-                clicked(p);
+                clicked(p);*/
                 JDialog dialog = new JDialog();
                 setDialog(dialog);
                 dialog.setTitle("修改计划");
                 ModifyPlanJPanel modifyPlanJPanel = new ModifyPlanJPanel();
-                Plan plan = p.getPlan();
                 
                 modifyPlanJPanel.getTitleField().setText(plan.getPl_title());
                 modifyPlanJPanel.getTypeField().setText(plan.getPl_type());
@@ -327,11 +326,11 @@ public class PlanManageJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                Button button = (Button) e.getSource();
+                /*Button button = (Button) e.getSource();
                 PlanInfoJPanel p = (PlanInfoJPanel) button.getParent().getParent();
-                clicked(p);
+                clicked(p);*/
                 //TODO 删除这个计划
-                int p_id = p.getPlan().getP_id();
+                int p_id = plan.getP_id();
                 dialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
                 planManage.deletePlan(p_id);
                 MainWindow.dialog.setDialog("删除成功", MainWindow.SUCCESSIMAGE);
@@ -346,11 +345,11 @@ public class PlanManageJPanel extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                Button button = (Button) e.getSource();
+                /*Button button = (Button) e.getSource();
                 PlanInfoJPanel p = (PlanInfoJPanel) button.getParent().getParent();
-                clicked(p);
+                clicked(p);*/
                 //TODO 设置或取消提醒
-                int p_id = p.getPlan().getP_id();
+                int p_id = plan.getP_id();
                 int p_config;
                 if (plan.getPl_config()) {
                     plan.setPl_config(false);
