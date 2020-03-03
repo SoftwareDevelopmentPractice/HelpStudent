@@ -11,7 +11,6 @@ import java.util.Calendar;
 
 public class Task {
      private int t_id;
-     private String t_stime;
      private String t_title;
      private String t_content;
      private Calendar t_time;

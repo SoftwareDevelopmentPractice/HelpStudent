@@ -1,6 +1,5 @@
 package com.fhlxc.backend;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -108,11 +107,6 @@ public class AddTask {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-        
-        
-        String sql1 = "delete from partner where st_id ="+st_id+" and pa_id ="+pa_id+" ;";
-        ConnectMySQL connectMySQL1 = new ConnectMySQL();
         try {
             PreparedStatement preparedStatement = connectMySQL.getConnection().prepareStatement(sql);
             preparedStatement.execute();

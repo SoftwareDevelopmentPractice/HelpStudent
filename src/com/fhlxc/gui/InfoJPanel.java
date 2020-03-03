@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -17,9 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import com.fhlxc.backend.ModifyOwnInfo;
-import com.fhlxc.backend.ShowSchoolBus;
 import com.fhlxc.data.Data;
-import com.fhlxc.entity.Schoolbus;
 import com.fhlxc.entity.Student;
 
 /**

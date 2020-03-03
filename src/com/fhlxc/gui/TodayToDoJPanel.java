@@ -18,7 +18,6 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import com.fhlxc.backend.AddTask;
 import com.fhlxc.backend.Checkplan;
 import com.fhlxc.backend.PlanManage;
 import com.fhlxc.data.Data;
