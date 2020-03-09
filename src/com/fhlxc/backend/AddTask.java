@@ -40,7 +40,7 @@ public class AddTask {
                 students.add(student);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return students;
     }
