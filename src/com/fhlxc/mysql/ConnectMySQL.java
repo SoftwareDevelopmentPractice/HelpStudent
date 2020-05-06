@@ -1,6 +1,5 @@
 package com.fhlxc.mysql;
 
-import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -26,8 +25,9 @@ public class ConnectMySQL {
     public boolean connect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://" + InetAddress.getByName("390c88b3.nat123.cc").getHostAddress() + ":45362/library?useSSL=false&serverTimezone=GMT"
-                    , "root", "tw900516");
+            conn = DriverManager.getConnection("jdbc:mysql://" + "127.0.0.1" + ":3306/softwaredevelopment?useSSL=false&serverTimezone=GMT"
+                    + "&allowPublicKeyRetrieval=true"
+                    , "fhlxc", "Zxc123..");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
